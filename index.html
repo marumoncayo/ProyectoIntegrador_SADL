@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SADL — Banco de Alimentos Quito</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #F4F1EC;
+    --surface: #FEFCF8;
+    --dark:    #1A1A18;
+    --ink:     #2C2C2A;
+    --muted:   #8A8780;
+    --accent:  #2D5A1B;
+    --accent2: #E8A020;
+    --accent3: #C4391A;
+    --border:  #D8D4CC;
+    --mono:    'JetBrains Mono', monospace;
+    --sans:    'Syne', sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    height: 52px;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  header::before {
+    content:''; position:absolute; left:0; top:0; bottom:0;
+    width:4px; background:var(--accent2);
+  }
+  .header-left  { display:flex; align-items:center; gap:16px; }
+  .system-tag   { font-family:var(--mono); font-size:10px; color:var(--accent2); letter-spacing:2px; }
+  .header-title { font-size:14px; font-weight:700; color:#fff; letter-spacing:.5px; }
+  .header-title span { color:var(--accent2); }
+  .status-pill  { display:flex; align-items:center; gap:6px; font-family:var(--mono); font-size:10px; color:#aaa; letter-spacing:1px; }
+  .status-dot   { width:6px; height:6px; border-radius:50%; background:#4CAF50; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+
+  /* ── LAYOUT ── */
+  .workspace {
+    display: grid;
+    grid-template-columns: 320px 1fr 280px;
+    height: calc(100vh - 52px);
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ── LEFT PANEL ── */
+  .panel-left {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .panel-header {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .panel-label { font-family:var(--mono); font-size:9px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+  .panel-title { font-size:18px; font-weight:800; color:var(--ink); line-height:1.2; }
+  .panel-title span { color:var(--accent); }
+
+  .panel-body {
+    flex:1; overflow-y:auto; padding:20px;
+    scrollbar-width:thin; scrollbar-color:var(--border) transparent;
+  }
+
+  .form-section { margin-bottom:20px; }
+  .form-label {
+    font-family:var(--mono); font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--muted); margin-bottom:8px; display:flex; align-items:center; gap:6px;
+  }
+  .req { color:var(--accent3); }
+
+  select, textarea {
+    width:100%; background:var(--bg); border:1.5px solid var(--border); border-radius:8px;
+    padding:10px 12px; font-family:var(--sans); font-size:13px; color:var(--ink);
+    outline:none; transition:border-color .2s, box-shadow .2s; appearance:none;
+  }
+  select:focus, textarea:focus {
+    border-color:var(--accent); box-shadow:0 0 0 3px rgba(45,90,27,.1);
+  }
+  select {
+    cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8780' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 12px center; padding-right:32px;
+  }
+  textarea { resize:none; line-height:1.6; min-height:110px; }
+
+  .btn-submit {
+    width:100%; background:var(--accent); color:white; border:none; border-radius:10px;
+    padding:14px; font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.5px;
+    cursor:pointer; transition:all .2s; display:flex; align-items:center; justify-content:center; gap:10px;
+  }
+  .btn-submit:hover  { background:#234815; transform:translateY(-1px); box-shadow:0 4px 16px rgba(45,90,27,.3); }
+  .btn-submit:active { transform:translateY(0); }
+  .btn-submit:disabled { background:var(--muted); cursor:not-allowed; transform:none; box-shadow:none; }
+
+  .spinner {
+    width:14px; height:14px; border:2px solid rgba(255,255,255,.4);
+    border-top-color:white; border-radius:50%;
+    animation: spin .7s linear infinite; display:inline-block;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .results-loading {
+    flex:1; display:none; flex-direction:column;
+    align-items:center; justify-content:center; gap:14px;
+  }
+  .loading-spinner {
+    width:36px; height:36px; border:3px solid var(--border);
+    border-top-color:var(--accent); border-radius:50%;
+    animation: spin .8s linear infinite;
+  }
+
+  /* Confirmación */
+  .confirm-box {
+    display: none;
+    margin-top: 16px;
+    background: rgba(45,90,27,.07);
+    border: 1.5px solid rgba(45,90,27,.25);
+    border-radius: 10px;
+    padding: 14px 16px;
+    animation: slideUp .3s ease forwards;
+  }
+  .confirm-box.visible { display: block; }
+  @keyframes slideUp { from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:translateY(0);} }
+
+  .confirm-title {
+    font-family: var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--accent); margin-bottom:10px;
+  }
+  .confirm-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 5px 0; border-bottom: 1px solid rgba(45,90,27,.1); font-size: 12px;
+  }
+  .confirm-row:last-child { border-bottom: none; }
+  .confirm-key   { color:var(--muted); font-family:var(--mono); font-size:10px; }
+  .confirm-value { color:var(--ink); font-weight:600; max-width:170px; text-align:right; line-height:1.4; }
+
+  /* ── MAP PANEL ── */
+  .panel-map { position:relative; overflow:hidden; height:100%; }
+
+  #map-iframe {
+    width:100%; height:100%;
+    border:none; display:block;
+    pointer-events: auto;
+  }
+
+  /* ── RIGHT PANEL ── */
+  .panel-right {
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .results-placeholder {
+    flex:1; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    gap:14px; padding:32px 20px; text-align:center;
+  }
+  .ph-icon { font-size:38px; opacity:.2; }
+  .ph-text { font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:1px; line-height:1.9; }
+
+  .results-body {
+    flex:1; overflow-y:auto; display:none; flex-direction:column;
+    scrollbar-width:thin; scrollbar-color:var(--border) transparent;
+  }
+  .results-body.visible { display:flex; }
+
+  .metrics-row {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:1px; border-bottom:1px solid var(--border);
+    background:var(--border); flex-shrink:0;
+  }
+  .metric-card { background:var(--surface); padding:16px; }
+  .metric-label { font-family:var(--mono); font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  .metric-value { font-size:22px; font-weight:800; color:var(--ink); line-height:1; }
+  .metric-value.green { color:var(--accent); }
+  .metric-value.amber { color:var(--accent2); }
+  .metric-unit { font-size:12px; font-weight:400; color:var(--muted); margin-left:2px; }
+
+  .result-section { padding:16px 20px; border-bottom:1px solid var(--border); flex-shrink:0; }
+  .result-section-title { font-family:var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+
+  .route-stop { display:flex; align-items:flex-start; gap:10px; padding:5px 0; }
+  .stop-line  { display:flex; flex-direction:column; align-items:center; flex-shrink:0; margin-top:3px; }
+  .stop-num   { width:22px; height:22px; border-radius:50%; background:var(--accent); color:white; font-family:var(--mono); font-size:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .stop-num.origin { background:var(--accent2); }
+  .stop-connector  { width:1.5px; height:14px; background:var(--border); margin:2px 0; }
+  .stop-info  { flex:1; min-width:0; }
+  .stop-name  { font-size:12px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .stop-meta  { font-family:var(--mono); font-size:10px; color:var(--muted); margin-top:1px; }
+
+  .algo-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(45,90,27,.08); border:1px solid rgba(45,90,27,.2); border-radius:6px; padding:5px 10px; font-family:var(--mono); font-size:10px; color:var(--accent); letter-spacing:1px; margin-bottom:10px; }
+  .algo-text  { font-size:12px; color:var(--ink); line-height:1.7; opacity:.85; }
+
+  .llm-header { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .llm-icon   { width:20px; height:20px; background:var(--dark); border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:11px; flex-shrink:0; }
+  .llm-title  { font-family:var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+  .llm-text   { font-size:12px; color:var(--ink); line-height:1.75; opacity:.85; }
+  .llm-cursor { display:inline-block; width:2px; height:13px; background:var(--accent); margin-left:2px; vertical-align:middle; animation:blink 1s step-end infinite; }
+  @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+  ::-webkit-scrollbar { width:4px; }
+  ::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-left">
+    <span class="system-tag">SADL v1.0</span>
+    <span class="header-title">Sistema de Apoyo a Decisiones <span>Logísticas</span> — Banco de Alimentos Quito</span>
+  </div>
+  <div class="status-pill">
+    <div class="status-dot"></div>
+    SISTEMA ACTIVO
+  </div>
+</header>
+
+<div class="workspace">
+
+  <!-- ═══ PANEL IZQUIERDO ═══ -->
+  <div class="panel-left">
+    <div class="panel-header">
+      <div class="panel-label">Módulo 01</div>
+      <div class="panel-title">Nueva <span>Solicitud</span><br>de Rescate</div>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-section">
+        <div class="form-label">Punto de partida <span class="req">*</span></div>
+        <select id="origen">
+          <option value="">Seleccionar origen...</option>
+          <option value="banco">Banco de Alimentos (Av. Mariana de Jesús)</option>
+          <option value="norte">Bodega Norte (Carcelén)</option>
+          <option value="sur">Bodega Sur (Quitumbe)</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <div class="form-label">Zona de cobertura</div>
+        <select id="zona">
+          <option value="todas">Todas las zonas</option>
+          <option value="norte">Norte</option>
+          <option value="centro-norte">Centro-Norte</option>
+          <option value="centro">Centro e Histórico</option>
+          <option value="sur">Sur</option>
+          <option value="valles">Valles</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <div class="form-label">Restricción de tiempo</div>
+        <select id="tiempo">
+          <option value="none">Sin restricción</option>
+          <option value="2h">Máximo 2 horas</option>
+          <option value="3h">Máximo 3 horas</option>
+          <option value="4h">Máximo 4 horas</option>
+          <option value="manana">Solo mañana (antes de 12:00)</option>
+          <option value="tarde">Solo tarde (después de 12:00)</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <div class="form-label">Capacidad del vehículo</div>
+        <select id="capacidad">
+          <option value="small">Camioneta pequeña (hasta 500 kg)</option>
+          <option value="medium">Furgoneta mediana (500–1000 kg)</option>
+          <option value="large">Camión (1000–2000 kg)</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <div class="form-label">Descripción de la solicitud <span class="req">*</span></div>
+        <textarea id="observaciones" placeholder="Ej: Necesitamos recoger alimentos del norte de Quito, hay disponibilidad en Carcelén y Calderón, preferimos terminar antes del mediodía porque los alimentos son perecederos..."></textarea>
+      </div>
+
+      <button class="btn-submit" id="btn-submit" onclick="enviarSolicitud()">
+        <span>📋</span> Registrar Solicitud
+      </button>
+
+      <div class="confirm-box" id="confirm-box">
+        <div class="confirm-title">✓ Solicitud registrada</div>
+        <div id="confirm-rows"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ MAPA FOLIUM ═══ -->
+  <div class="panel-map">
+    <iframe
+      id="map-iframe"
+      src="Quito's EcoMap.html"
+      title="Mapa KFC Quito"
+      scrolling="no">
+    </iframe>
+  </div>
+
+  <!-- ═══ PANEL DERECHO: RESULTADOS ═══ -->
+  <div class="panel-right">
+    <div class="panel-header">
+      <div class="panel-label">Módulo 03</div>
+      <div class="panel-title">Resultado &<br><span>Análisis</span></div>
+    </div>
+
+    <!-- Placeholder — visible hasta que llegue la respuesta del agente -->
+    <div class="results-placeholder" id="results-placeholder">
+      <div class="ph-icon">📊</div>
+      <div class="ph-text">
+        Los resultados aparecerán<br>aquí una vez conectado<br>el agente inteligente.<br><br>
+        Incluirá:<br>
+        · Ruta óptima<br>
+        · Tiempo estimado<br>
+        · Justificación TSP<br>
+        · Análisis del LLM
+      </div>
+    </div>
+
+    <!-- Loading — visible mientras n8n procesa -->
+    <div class="results-loading" id="results-loading">
+      <div class="loading-spinner"></div>
+      <div class="ph-text">Procesando solicitud<br>en el agente...</div>
+    </div>
+
+    <!-- Resultados — se mostrará cuando el agente responda -->
+    <div class="results-body" id="results-body">
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-label">Paradas</div>
+          <div class="metric-value green" id="res-stops">—</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Tiempo est.</div>
+          <div class="metric-value amber" id="res-time">—</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Distancia</div>
+          <div class="metric-value" id="res-dist">—</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Algoritmo</div>
+          <div class="metric-value" id="res-algo" style="font-size:13px;">—</div>
+        </div>
+      </div>
+
+      <div class="result-section">
+        <div class="result-section-title">Ruta óptima</div>
+        <div id="route-steps"></div>
+      </div>
+
+      <div class="result-section">
+        <div class="algo-badge" id="algo-badge">⚙ TSP</div>
+        <div class="algo-text" id="algo-text"></div>
+      </div>
+
+      <div class="result-section" style="border-bottom:none;">
+        <div class="llm-header">
+          <div class="llm-icon">✦</div>
+          <div class="llm-title">Análisis del Agente</div>
+        </div>
+        <div class="llm-text" id="llm-text"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const LABELS = {
+  origen:   { banco:"Banco de Alimentos", norte:"Bodega Norte", sur:"Bodega Sur" },
+  zona:     { todas:"Todas las zonas", norte:"Norte", "centro-norte":"Centro-Norte", centro:"Centro e Histórico", sur:"Sur", valles:"Valles" },
+  tiempo:   { none:"Sin restricción", "2h":"Máx. 2 horas", "3h":"Máx. 3 horas", "4h":"Máx. 4 horas", manana:"Solo mañana", tarde:"Solo tarde" },
+  capacidad:{ small:"Camioneta pequeña", medium:"Furgoneta mediana", large:"Camión" },
+};
+
+// ─────────────────────────────────────────
+// ⚙ CONFIGURACIÓN — pega aquí tu URL de n8n
+// Cuando tengas el webhook activo reemplaza
+// la línea de abajo con tu URL real, ejemplo:
+// const N8N_WEBHOOK = "https://tu-instancia.n8n.cloud/webhook/banco-alimentos";
+// ─────────────────────────────────────────
+const N8N_WEBHOOK = "http://localhost:5678/webhook/banco-alimentos";
+
+// ─────────────────────────────────────────
+// ENVIAR SOLICITUD → n8n
+// ─────────────────────────────────────────
+async function enviarSolicitud() {
+  const origen        = document.getElementById('origen').value;
+  const zona          = document.getElementById('zona').value;
+  const tiempo        = document.getElementById('tiempo').value;
+  const capacidad     = document.getElementById('capacidad').value;
+  const observaciones = document.getElementById('observaciones').value.trim();
+
+  if (!origen)        { alert('Selecciona un punto de partida.'); return; }
+  if (!observaciones) { alert('Describe la solicitud de rescate.'); return; }
+
+  // Mostrar confirmación de envío
+  mostrarConfirmacion(origen, zona, tiempo, capacidad, observaciones);
+
+  // Cambiar botón a estado de carga
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Procesando...';
+
+  // Mostrar loading en panel derecho
+  document.getElementById('results-placeholder').style.display = 'none';
+  document.getElementById('results-loading').style.display     = 'flex';
+  document.getElementById('results-body').classList.remove('visible');
+
+  // Payload que se envía a n8n
+  const payload = {
+    origen,
+    zona,
+    tiempo,
+    capacidad,
+    observaciones,
+    origen_label:    LABELS.origen[origen],
+    zona_label:      LABELS.zona[zona],
+    tiempo_label:    LABELS.tiempo[tiempo],
+    capacidad_label: LABELS.capacidad[capacidad],
+  };
+
+  try {
+    const res  = await fetch(N8N_WEBHOOK, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+
+    if (!res.ok) throw new Error(`n8n respondió con status ${res.status}`);
+
+    const data = await res.json();
+
+    // Mostrar resultados en el panel derecho
+    mostrarResultados(data);
+
+  } catch (err) {
+    document.getElementById('results-loading').style.display = 'none';
+
+    // Si el webhook aún no está listo, mostrar mensaje amigable
+    if (N8N_WEBHOOK === "TU_URL_DE_WEBHOOK_AQUI") {
+      mostrarErrorWebhook("El webhook de n8n aún no está configurado. Reemplaza N8N_WEBHOOK en el código con tu URL real.");
+    } else {
+      mostrarErrorWebhook("No se pudo conectar con n8n: " + err.message);
+    }
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<span>📋</span> Registrar Solicitud';
+  }
+}
+
+// ─────────────────────────────────────────
+// MOSTRAR RESULTADOS DESDE n8n
+// Espera este JSON de n8n:
+// {
+//   "ruta": ["KFC Carcelén", "KFC Calderón", ...],
+//   "tiempo_min": 85,
+//   "distancia_km": 32.4,
+//   "algoritmo": "NN + 2-opt",
+//   "justificacion": "La ruta optimizada..."
+// }
+// ─────────────────────────────────────────
+function mostrarResultados(data) {
+  document.getElementById('results-loading').style.display = 'none';
+  document.getElementById('results-body').classList.add('visible');
+
+  // Métricas
+  const ruta = data.ruta || [];
+  document.getElementById('res-stops').textContent = ruta.length;
+
+  const min = data.tiempo_min || 0;
+  const h = Math.floor(min / 60), m = min % 60;
+  document.getElementById('res-time').innerHTML = h > 0
+    ? `${h}<span class="metric-unit">h</span> ${m}<span class="metric-unit">m</span>`
+    : `${m}<span class="metric-unit">min</span>`;
+
+  document.getElementById('res-dist').innerHTML =
+    `${(data.distancia_km || 0).toFixed(1)}<span class="metric-unit">km</span>`;
+
+  document.getElementById('res-algo').textContent = data.algoritmo || 'TSP';
+
+  // Pasos de ruta
+  const stepsEl = document.getElementById('route-steps');
+  stepsEl.innerHTML = '';
+  ruta.forEach((nombre, i) => {
+    const isLast = i === ruta.length - 1;
+    const div = document.createElement('div');
+    div.className = 'route-stop';
+    div.innerHTML = `
+      <div class="stop-line">
+        <div class="stop-num">${i + 1}</div>
+        ${!isLast ? '<div class="stop-connector"></div>' : ''}
+      </div>
+      <div class="stop-info">
+        <div class="stop-name">${nombre}</div>
+        <div class="stop-meta">Parada ${i + 1}</div>
+      </div>`;
+    stepsEl.appendChild(div);
+  });
+
+  // Algoritmo
+  document.getElementById('algo-badge').textContent = `⚙ ${data.algoritmo || 'TSP'}`;
+
+  // Justificación con efecto typewriter
+  const llmEl = document.getElementById('llm-text');
+  llmEl.innerHTML = '';
+  const texto = data.justificacion || 'Sin justificación disponible.';
+  let i = 0;
+  const cursor = document.createElement('span');
+  cursor.className = 'llm-cursor';
+  llmEl.appendChild(cursor);
+  const iv = setInterval(() => {
+    if (i < texto.length) {
+      llmEl.insertBefore(document.createTextNode(texto[i]), cursor);
+      i++;
+    } else { clearInterval(iv); cursor.remove(); }
+  }, 16);
+
+  document.getElementById('results-body').scrollTop = 0;
+}
+
+// ─────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────
+function mostrarConfirmacion(origen, zona, tiempo, capacidad, observaciones) {
+  document.getElementById('confirm-rows').innerHTML = `
+    <div class="confirm-row">
+      <span class="confirm-key">Origen</span>
+      <span class="confirm-value">${LABELS.origen[origen]}</span>
+    </div>
+    <div class="confirm-row">
+      <span class="confirm-key">Zona</span>
+      <span class="confirm-value">${LABELS.zona[zona]}</span>
+    </div>
+    <div class="confirm-row">
+      <span class="confirm-key">Tiempo</span>
+      <span class="confirm-value">${LABELS.tiempo[tiempo]}</span>
+    </div>
+    <div class="confirm-row">
+      <span class="confirm-key">Vehículo</span>
+      <span class="confirm-value">${LABELS.capacidad[capacidad]}</span>
+    </div>
+    <div class="confirm-row">
+      <span class="confirm-key">Solicitud</span>
+      <span class="confirm-value">${observaciones.length > 70 ? observaciones.slice(0,70)+'…' : observaciones}</span>
+    </div>`;
+  document.getElementById('confirm-box').classList.add('visible');
+}
+
+function mostrarErrorWebhook(msg) {
+  document.getElementById('results-placeholder').style.display = 'flex';
+  document.getElementById('results-placeholder').innerHTML = `
+    <div class="ph-icon">⚠️</div>
+    <div class="ph-text" style="color:#C4391A;">${msg}</div>`;
+}
+
+// Evitar que el mapa se resetee por geolocalización
+window.addEventListener('load', () => {
+  const iframe = document.getElementById('map-iframe');
+  iframe.addEventListener('load', () => {
+    try {
+      const w = iframe.contentWindow;
+      if (w && w.navigator) {
+        Object.defineProperty(w.navigator, 'geolocation', { value: undefined, writable: false });
+      }
+    } catch(e) {}
+  });
+});
+</script>
+</body>
+</html>

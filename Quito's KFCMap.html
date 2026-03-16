@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f304fe7654e0fe160dc10dd488822d73 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.css"/>
+</head>
+<body>
+    
+    
+
+            <div class="folium-map" id="map_f304fe7654e0fe160dc10dd488822d73" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f304fe7654e0fe160dc10dd488822d73 = L.map(
+                "map_f304fe7654e0fe160dc10dd488822d73",
+                {
+                    center: [-0.18990597123329325, -78.44078744533141],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "maxBounds": [
+[
+-0.425,
+-78.27316924072967,
+],
+[
+0.06,
+-78.65,
+],
+],
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_bc61c46f5242a7bdeb96afccacd38dd0 = L.tileLayer(
+                "https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "My Data Attribution",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_bc61c46f5242a7bdeb96afccacd38dd0.addTo(map_f304fe7654e0fe160dc10dd488822d73);
+        
+    
+            var circle_marker_ae3840c9e22a233dbb43b4d46bd49e7e = L.circleMarker(
+                [0.06, -78.65],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "light_blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_f304fe7654e0fe160dc10dd488822d73);
+        
+    
+            circle_marker_ae3840c9e22a233dbb43b4d46bd49e7e.bindTooltip(
+                `<div>
+                     Límite superior derecho
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_79010cdb8fff5d53db875d33f2ba5d24 = L.circleMarker(
+                [-0.425, -78.27316924072967],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "light_blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_f304fe7654e0fe160dc10dd488822d73);
+        
+    
+            circle_marker_79010cdb8fff5d53db875d33f2ba5d24.bindTooltip(
+                `<div>
+                     Límite inferior izquierdo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var locate_control_ef9882b4cfc5f07b0dc950df4626c910 = L.control.locate(
+                {"locateOptions": {"enableHighAccuracy": true, "maxZoom": false, "setView": true, "timeout": 5000, "watch": true}, "strings": {"popup": "You are Here!", "title": "My Location"}}
+            ).addTo(map_f304fe7654e0fe160dc10dd488822d73);
+            
+                locate_control_ef9882b4cfc5f07b0dc950df4626c910.start();
+            
+        
+    
+            var poly_line_71eb05404e28b11f146cd796f1d140c8 = L.polyline(
+                [[-0.3936152029351594, -78.37869646369681], [-0.3936152029351594, -78.3580970984076], [-0.29817322947171143, -78.38144304573537], [-0.27482757468897884, -78.44392778711266], [-0.21852316823017134, -78.45903398832473], [-0.23686416911126507, -78.4423588552703], [-0.22666808714940312, -78.42924949947458], [-0.22885296247080833, -78.42245205572864], [-0.2371069325608505, -78.4171112071551], [-0.23734969632267736, -78.39016419801943], [-0.22375491922551324, -78.36807250584515], [-0.19498735847416068, -78.37717622518521], [-0.18236360297341808, -78.41310557068515], [-0.137209332991237, -78.40970684881218], [-0.23965595099651865, -78.33784815789366], [-0.23382962015205674, -78.32668092891868], [-0.09254050855255143, -78.27618563252032], [-0.06874947777928382, -78.28880945666774], [-0.045443968536817925, -78.33444943607111], [-0.04787162640397338, -78.40776472203545], [-0.0444729057101918, -78.4325268385385], [-0.0007750584892793347, -78.42815705327324], [0.023015993826075953, -78.49807361728449], [-0.002717184880458443, -78.52963317753346], [-0.022138451746883045, -78.47768128604669], [-0.05029928359050287, -78.49564595880379], [-0.07166266552468308, -78.49030511014627], [-0.06727248981775906, -78.49602162792961], [-0.07001906982408536, -78.4891551728332], [-0.07688551912216442, -78.49808156445852], [-0.07619887424042614, -78.50494801955493], [-0.08924512500975411, -78.52760732137307], [-0.08718519096801773, -78.53378713095982], [-0.11190439126944789, -78.53653371299838], [-0.10288731613084806, -78.5180621852871], [-0.11411504695905003, -78.51193795734548], [-0.12513863296598193, -78.53133134582727], [-0.134733231845533, -78.52602368161119], [-0.13432495111720974, -78.51581663504183], [-0.12758831813058938, -78.5066302931294], [-0.1461316506324686, -78.52230870321901], [-0.1441895301239671, -78.51114147420785], [-0.1609403138266836, -78.51162700590399], [-0.16798049425834205, -78.50215913782928], [-0.1772605070669342, -78.51942664284611], [-0.19656028877638715, -78.5203977062384], [-0.2043287481979216, -78.51032292354354], [-0.20542118750611335, -78.51469270880878], [-0.20299354449820403, -78.52282536471908], [-0.20979094398807865, -78.5324146157178], [-0.2112475300637948, -78.53022972301574], [-0.2540953476639321, -78.55523460533072], [-0.25191047638097896, -78.56555215387365], [-0.2804351547982303, -78.57514140487238], [-0.287475278497686, -78.57065023663141], [-0.28723251570811653, -78.57732629745331], [-0.27715785544539717, -78.58230299733873], [-0.275458514307002, -78.58691554845203], [-0.2932622156947786, -78.57478890910691], [-0.30270346354749444, -78.57530389323915], [-0.3119730443533526, -78.5746172477295], [-0.3202126648886882, -78.5744455863521], [-0.32639286191159206, -78.58217272240911], [-0.3337852549828392, -78.58266638489462], [-0.33053831640087483, -78.57453372898433], [-0.3392056502854886, -78.58189156749283], [-0.35533248724435496, -78.55055593458027], [-0.3367560016366895, -78.53759298548906], [-0.3285905019341503, -78.52156792240564], [-0.31134086265661676, -78.51799545610636], [-0.31613810251508057, -78.50554285929174], [-0.34961664954131116, -78.49880620865997], [-0.3673765624578858, -78.47665691763463], [-0.333263067408886, -78.45446578993395], [-0.31070585078631147, -78.45068918273203], [-0.32348197605688134, -78.41202198888323], [-0.3936152029351594, -78.37869646369681]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_f304fe7654e0fe160dc10dd488822d73);
+        
+    
+            poly_line_71eb05404e28b11f146cd796f1d140c8.bindTooltip(
+                `<div>
+                     Quito Border
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var feature_group_c7bf8d86606ec94ca5a7438ef668451e = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_803d5cd99fd273be1d05537c81e94053 = L.marker(
+                [-0.0087818, -78.4453248],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_3366bc0d38c2753b8a1d2ea5ccc84247 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_30faac90b6f3ac2aaffd28dea26a5eb2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_e9f5c72f8d1a9bd2bf94673d754a8dcc = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBNaXRhZCBkZWwgTXVuZG88L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYgUy9OLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_30faac90b6f3ac2aaffd28dea26a5eb2.setContent(i_frame_e9f5c72f8d1a9bd2bf94673d754a8dcc);
+            
+        
+
+        marker_803d5cd99fd273be1d05537c81e94053.bindPopup(popup_30faac90b6f3ac2aaffd28dea26a5eb2)
+        ;
+
+        
+    
+    
+            marker_803d5cd99fd273be1d05537c81e94053.bindTooltip(
+                `<div>
+                     KFC - Mitad del Mundo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_803d5cd99fd273be1d05537c81e94053.setIcon(icon_3366bc0d38c2753b8a1d2ea5ccc84247);
+            
+    
+            var marker_8d5f9c4efe359c4e9a5ef22af2676116 = L.marker(
+                [-0.0512, -78.4557],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_fa1c1f2a183b441bcd6610f59e9d77da = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5cf6e054e5a200d8ffbc0d4e5bd59372 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_1c90fa4572141f5cc85b87a318cd4680 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBQb21hc3F1aTwvaDQ+CiAgICAgICAgPHAgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsiPgogICAgICAgIDxiPkFkZHJlc3M6PC9iPiBBdi4gTWFudWVsIEPDs3Jkb3ZhIEdhbGFyemEsIFF1aXRvPGJyPgogICAgICAgIDwvcD4KICAgIA==" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_5cf6e054e5a200d8ffbc0d4e5bd59372.setContent(i_frame_1c90fa4572141f5cc85b87a318cd4680);
+            
+        
+
+        marker_8d5f9c4efe359c4e9a5ef22af2676116.bindPopup(popup_5cf6e054e5a200d8ffbc0d4e5bd59372)
+        ;
+
+        
+    
+    
+            marker_8d5f9c4efe359c4e9a5ef22af2676116.bindTooltip(
+                `<div>
+                     KFC - Pomasqui
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8d5f9c4efe359c4e9a5ef22af2676116.setIcon(icon_fa1c1f2a183b441bcd6610f59e9d77da);
+            
+    
+            var marker_da560d6bac5b2af7637c8c2e6ae685e9 = L.marker(
+                [-0.0912162, -78.4724195],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_f8163d8f80634232c4d673bf8dd6005e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_47c47085f8669a0d835d5024ef9a5621 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_ffe37e8a03557cdae11cda04bd06d916 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBDYXJjZWzDqW48L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIENsZW1lbnRlIFllcm92aSBJbmRhYnVydSwgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_47c47085f8669a0d835d5024ef9a5621.setContent(i_frame_ffe37e8a03557cdae11cda04bd06d916);
+            
+        
+
+        marker_da560d6bac5b2af7637c8c2e6ae685e9.bindPopup(popup_47c47085f8669a0d835d5024ef9a5621)
+        ;
+
+        
+    
+    
+            marker_da560d6bac5b2af7637c8c2e6ae685e9.bindTooltip(
+                `<div>
+                     KFC - Carcelén
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_da560d6bac5b2af7637c8c2e6ae685e9.setIcon(icon_f8163d8f80634232c4d673bf8dd6005e);
+            
+    
+            var marker_7c63cb218ada0bc9f2c40aa660b785e4 = L.marker(
+                [-0.1019, -78.4226103],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_812f54f68995bd15b45a4ec7a0bd801c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6311d6bbc48caf9aa69ff1fd19a59533 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_85bd4b867f829b582382c00a87023d3d = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBDYWxkZXLDs248L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQ2FyYXB1bmdvIDcyOCwgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_6311d6bbc48caf9aa69ff1fd19a59533.setContent(i_frame_85bd4b867f829b582382c00a87023d3d);
+            
+        
+
+        marker_7c63cb218ada0bc9f2c40aa660b785e4.bindPopup(popup_6311d6bbc48caf9aa69ff1fd19a59533)
+        ;
+
+        
+    
+    
+            marker_7c63cb218ada0bc9f2c40aa660b785e4.bindTooltip(
+                `<div>
+                     KFC - Calderón
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7c63cb218ada0bc9f2c40aa660b785e4.setIcon(icon_812f54f68995bd15b45a4ec7a0bd801c);
+            
+    
+            var marker_8a53d2abcbdce8128c1badff59dac86d = L.marker(
+                [-0.1041555, -78.4533691],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_89f7564f5609268df7ac3e97cb9b8799 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0b4f5fd4ebc3f9c4ce3ed23c1d8d9664 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_735b5316a04bff04d2215911c768a1ac = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBDYXJhcHVuZ28gR3JhbiBBa8OtPC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IEF2LiBQYWRyZSBMdWlzIFZhY2NhcmksIFF1aXRvPGJyPgogICAgICAgIDwvcD4KICAgIA==" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_0b4f5fd4ebc3f9c4ce3ed23c1d8d9664.setContent(i_frame_735b5316a04bff04d2215911c768a1ac);
+            
+        
+
+        marker_8a53d2abcbdce8128c1badff59dac86d.bindPopup(popup_0b4f5fd4ebc3f9c4ce3ed23c1d8d9664)
+        ;
+
+        
+    
+    
+            marker_8a53d2abcbdce8128c1badff59dac86d.bindTooltip(
+                `<div>
+                     KFC - Carapungo Gran Akí
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8a53d2abcbdce8128c1badff59dac86d.setIcon(icon_89f7564f5609268df7ac3e97cb9b8799);
+            
+    
+            var marker_e09205421259898929bb4b6eb021739c = L.marker(
+                [-0.1034903, -78.4904695],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_3f7261cea89a4a680ce77f64508cc14e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cdf0f2ae67ef6a6eb910c578e04a4cfe = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_4ffea417c9a835427024ccf01e1ac640 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBFbCBDb25kYWRvPC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IEF2LiBkZSBsYSBQcmVuc2EgeSBBbnRvbmlvIEpvc8OpIGRlIFN1Y3JlLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_cdf0f2ae67ef6a6eb910c578e04a4cfe.setContent(i_frame_4ffea417c9a835427024ccf01e1ac640);
+            
+        
+
+        marker_e09205421259898929bb4b6eb021739c.bindPopup(popup_cdf0f2ae67ef6a6eb910c578e04a4cfe)
+        ;
+
+        
+    
+    
+            marker_e09205421259898929bb4b6eb021739c.bindTooltip(
+                `<div>
+                     KFC - El Condado
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e09205421259898929bb4b6eb021739c.setIcon(icon_3f7261cea89a4a680ce77f64508cc14e);
+            
+    
+            var marker_7e0b5f2a959074e8f3e09633d8129851 = L.marker(
+                [-0.1094186, -78.4449468],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_e0da528c19311e09fba4c5ca1f0ff466 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e7b7190ef04b1bf1928af038e0767a17 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_a4a6284f705dd11cd62780402e92ca4c = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBMbGFubyBHcmFuZGU8L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gR2FicmllbCBHYXJjw61hIE1vcmVubywgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_e7b7190ef04b1bf1928af038e0767a17.setContent(i_frame_a4a6284f705dd11cd62780402e92ca4c);
+            
+        
+
+        marker_7e0b5f2a959074e8f3e09633d8129851.bindPopup(popup_e7b7190ef04b1bf1928af038e0767a17)
+        ;
+
+        
+    
+    
+            marker_7e0b5f2a959074e8f3e09633d8129851.bindTooltip(
+                `<div>
+                     KFC - Llano Grande
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7e0b5f2a959074e8f3e09633d8129851.setIcon(icon_e0da528c19311e09fba4c5ca1f0ff466);
+            
+    
+            var marker_fdab445bdddc1cf0daa4f2f34be1d206 = L.marker(
+                [-0.1081868, -78.452495],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_b823d2e98d23be4e598bf588fed2e12f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d42334a32b12d0c10360a59546f136f4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_d1ec39b9597717de9eab13c3ad1dd439 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBQb3J0YWwgU2hvcHBpbmc8L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIFNpbcOzbiBCb2zDrXZhciwgUG9ydGFsIFNob3BwaW5nLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_d42334a32b12d0c10360a59546f136f4.setContent(i_frame_d1ec39b9597717de9eab13c3ad1dd439);
+            
+        
+
+        marker_fdab445bdddc1cf0daa4f2f34be1d206.bindPopup(popup_d42334a32b12d0c10360a59546f136f4)
+        ;
+
+        
+    
+    
+            marker_fdab445bdddc1cf0daa4f2f34be1d206.bindTooltip(
+                `<div>
+                     KFC - Portal Shopping
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fdab445bdddc1cf0daa4f2f34be1d206.setIcon(icon_b823d2e98d23be4e598bf588fed2e12f);
+            
+    
+            var marker_40b1321026c55237845fcb26c9e33a35 = L.marker(
+                [-0.1219195, -78.4941043],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_58509c46478601cf2f5064b69c666c94 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3b6200fc1c5dfb25f139084fe167a2bc = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_9443415ce11442ac16d183003e7b985e = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgQ290b2NvbGxhbyBBdXRvcsOhcGlkbzwvaDQ+CiAgICAgICAgPHAgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsiPgogICAgICAgIDxiPkFkZHJlc3M6PC9iPiBSaWdvYmVydG8gSGVyZWRpYSA1NTQ1LCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_3b6200fc1c5dfb25f139084fe167a2bc.setContent(i_frame_9443415ce11442ac16d183003e7b985e);
+            
+        
+
+        marker_40b1321026c55237845fcb26c9e33a35.bindPopup(popup_3b6200fc1c5dfb25f139084fe167a2bc)
+        ;
+
+        
+    
+    
+            marker_40b1321026c55237845fcb26c9e33a35.bindTooltip(
+                `<div>
+                     KFC Cotocollao Autorápido
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_40b1321026c55237845fcb26c9e33a35.setIcon(icon_58509c46478601cf2f5064b69c666c94);
+            
+    
+            var marker_9048ec09cde61126bb3fb9c1d603ecb6 = L.marker(
+                [-0.1255605, -78.4937082],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_16bb42c0b1b53816df7720cd858c389a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_53d747eb0a447a1a0bcc408ed67c2bf9 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_ca9ccc9acaef6ee9fe4a8066f629222d = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgTGEgUHJlbnNhIEF1dG9yw6FwaWRvPC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IEF2LiBMYSBQcmVuc2EgeSBBdi4gTHVpcyBHLiBUdWZpw7FvLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_53d747eb0a447a1a0bcc408ed67c2bf9.setContent(i_frame_ca9ccc9acaef6ee9fe4a8066f629222d);
+            
+        
+
+        marker_9048ec09cde61126bb3fb9c1d603ecb6.bindPopup(popup_53d747eb0a447a1a0bcc408ed67c2bf9)
+        ;
+
+        
+    
+    
+            marker_9048ec09cde61126bb3fb9c1d603ecb6.bindTooltip(
+                `<div>
+                     KFC La Prensa Autorápido
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9048ec09cde61126bb3fb9c1d603ecb6.setIcon(icon_16bb42c0b1b53816df7720cd858c389a);
+            
+    
+            var marker_7c018645b69e327c59b4e029d76b2730 = L.marker(
+                [-0.1267319, -78.4687395],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_f3fadf9d8155285e3ec16fe7f5dd35db = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3eb5829cc3d8c70033fc30a6d2f6f156 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_1afa7971a92d203949989ad0ca044ca3 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBDb21pdMOpIGRlbCBQdWVibG88L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIEpvcmdlIEdhcmPDqXMgeSBMdWlzIFRpcGFuLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_3eb5829cc3d8c70033fc30a6d2f6f156.setContent(i_frame_1afa7971a92d203949989ad0ca044ca3);
+            
+        
+
+        marker_7c018645b69e327c59b4e029d76b2730.bindPopup(popup_3eb5829cc3d8c70033fc30a6d2f6f156)
+        ;
+
+        
+    
+    
+            marker_7c018645b69e327c59b4e029d76b2730.bindTooltip(
+                `<div>
+                     KFC - Comité del Pueblo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7c018645b69e327c59b4e029d76b2730.setIcon(icon_f3fadf9d8155285e3ec16fe7f5dd35db);
+            
+    
+            var marker_73f2e20a05091779eaa5204c54718b4a = L.marker(
+                [-0.1291855, -78.4721921],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_1c451230a4622fa3e8402bc54c34539b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_71ec00a95d3d349a86b14874fd8a0cac = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_76e936319bdb42c94d707cfd257e3173 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBNb2xpbmVyb3M8L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXZlbmlkYSBKdWFuIE1vbGluZXJvcywgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_71ec00a95d3d349a86b14874fd8a0cac.setContent(i_frame_76e936319bdb42c94d707cfd257e3173);
+            
+        
+
+        marker_73f2e20a05091779eaa5204c54718b4a.bindPopup(popup_71ec00a95d3d349a86b14874fd8a0cac)
+        ;
+
+        
+    
+    
+            marker_73f2e20a05091779eaa5204c54718b4a.bindTooltip(
+                `<div>
+                     KFC - Molineros
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_73f2e20a05091779eaa5204c54718b4a.setIcon(icon_1c451230a4622fa3e8402bc54c34539b);
+            
+    
+            var marker_30603a2c51de4a385cc40debd4823393 = L.marker(
+                [-0.1315482, -78.4705343],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_f1ec5542c519eae920a9835a2c6eb1cb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_123c496b6c229c8ef8e26844c4953922 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_c6293bdd0856acc26790fc6e6e7b4ca5 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBFbG95IEFsZmFybzwvaDQ+CiAgICAgICAgPHAgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsiPgogICAgICAgIDxiPkFkZHJlc3M6PC9iPiBFbG95IEFsZmFybyB5IExhcyBBbm9uYXMgZXNxdWluYSwgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_123c496b6c229c8ef8e26844c4953922.setContent(i_frame_c6293bdd0856acc26790fc6e6e7b4ca5);
+            
+        
+
+        marker_30603a2c51de4a385cc40debd4823393.bindPopup(popup_123c496b6c229c8ef8e26844c4953922)
+        ;
+
+        
+    
+    
+            marker_30603a2c51de4a385cc40debd4823393.bindTooltip(
+                `<div>
+                     KFC - Eloy Alfaro
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_30603a2c51de4a385cc40debd4823393.setIcon(icon_f1ec5542c519eae920a9835a2c6eb1cb);
+            
+    
+            var marker_fddc0bb16d47257e1263424c2cbc8f98 = L.marker(
+                [-0.1595204, -78.4828451],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_01917977021b945a74a99c138a2d0811 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_30aaa9e7c33a3c923cb70114c9704a51 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_2ca38f93160ba1be23ab93090d36772f = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgRWwgSW5jYSBBdXRvcsOhcGlkbzwvaDQ+CiAgICAgICAgPHAgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsiPgogICAgICAgIDxiPkFkZHJlc3M6PC9iPiBBdi4gQW1hem9uYXMsIFF1aXRvPGJyPgogICAgICAgIDwvcD4KICAgIA==" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_30aaa9e7c33a3c923cb70114c9704a51.setContent(i_frame_2ca38f93160ba1be23ab93090d36772f);
+            
+        
+
+        marker_fddc0bb16d47257e1263424c2cbc8f98.bindPopup(popup_30aaa9e7c33a3c923cb70114c9704a51)
+        ;
+
+        
+    
+    
+            marker_fddc0bb16d47257e1263424c2cbc8f98.bindTooltip(
+                `<div>
+                     KFC El Inca Autorápido
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fddc0bb16d47257e1263424c2cbc8f98.setIcon(icon_01917977021b945a74a99c138a2d0811);
+            
+    
+            var marker_418ba8ff266f80fe7dd3d99d5650c70f = L.marker(
+                [-0.1684425, -78.4756207],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_6ca718d076f7abdf71e6c147a6db6a69 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_23fdf41a6633d6af17065125bb8c7b81 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_cd8d67d919ff73ba040bfc7fe6421a1a = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBHcmFuYWRvcyBPdXRsZXQ8L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIGRlIGxvcyBHcmFuYWRvcywgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_23fdf41a6633d6af17065125bb8c7b81.setContent(i_frame_cd8d67d919ff73ba040bfc7fe6421a1a);
+            
+        
+
+        marker_418ba8ff266f80fe7dd3d99d5650c70f.bindPopup(popup_23fdf41a6633d6af17065125bb8c7b81)
+        ;
+
+        
+    
+    
+            marker_418ba8ff266f80fe7dd3d99d5650c70f.bindTooltip(
+                `<div>
+                     KFC - Granados Outlet
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_418ba8ff266f80fe7dd3d99d5650c70f.setIcon(icon_6ca718d076f7abdf71e6c147a6db6a69);
+            
+    
+            var marker_0af8b8d4f247365ba896615eea66afb6 = L.marker(
+                [-0.1763811, -78.4804993],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_86e887a5b0bc81aa9ebb5b6bfa907b39 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f5cd8a34752d2265d05b03226b6314d9 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_a3e07ec4a5b7096f7b2a89a2e3e978be = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgUXVpY2VudHJvIE5vcnRlPC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IEF2LiBkZSBsb3MgU2h5cmlzLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_f5cd8a34752d2265d05b03226b6314d9.setContent(i_frame_a3e07ec4a5b7096f7b2a89a2e3e978be);
+            
+        
+
+        marker_0af8b8d4f247365ba896615eea66afb6.bindPopup(popup_f5cd8a34752d2265d05b03226b6314d9)
+        ;
+
+        
+    
+    
+            marker_0af8b8d4f247365ba896615eea66afb6.bindTooltip(
+                `<div>
+                     KFC Quicentro Norte
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0af8b8d4f247365ba896615eea66afb6.setIcon(icon_86e887a5b0bc81aa9ebb5b6bfa907b39);
+            
+    
+            var marker_ce39ee099314ebdce397ab556061b22e = L.marker(
+                [-0.1770162, -78.4847379],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_1bf0fd97d2a4ec7e0a2570196bd432b1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fc6998d53d96ba502506fbe00b0c2347 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_2675fbd54a0fa33eb069a25fb1245aee = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBDQ0k8L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIFLDrW8gQW1hem9uYXMgTjM2LTE1MiwgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_fc6998d53d96ba502506fbe00b0c2347.setContent(i_frame_2675fbd54a0fa33eb069a25fb1245aee);
+            
+        
+
+        marker_ce39ee099314ebdce397ab556061b22e.bindPopup(popup_fc6998d53d96ba502506fbe00b0c2347)
+        ;
+
+        
+    
+    
+            marker_ce39ee099314ebdce397ab556061b22e.bindTooltip(
+                `<div>
+                     KFC - CCI
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ce39ee099314ebdce397ab556061b22e.setIcon(icon_1bf0fd97d2a4ec7e0a2570196bd432b1);
+            
+    
+            var marker_b5dad86f91e67a1bdf9eecb5378b16f3 = L.marker(
+                [-0.1889797, -78.4875237],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_d52149f8e3e22fdbeeb51af97b857743 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fbe6a408daadebd81497f8f61aea84ae = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_75d9ebdcf28e6a2e2f658a6da5a2ea96 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBFbCBKYXJkw61uPC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IE1hbGwgRWwgSmFyZMOtbiwgQXYuIFLDrW8gQW1hem9uYXMsIFF1aXRvPGJyPgogICAgICAgIDwvcD4KICAgIA==" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_fbe6a408daadebd81497f8f61aea84ae.setContent(i_frame_75d9ebdcf28e6a2e2f658a6da5a2ea96);
+            
+        
+
+        marker_b5dad86f91e67a1bdf9eecb5378b16f3.bindPopup(popup_fbe6a408daadebd81497f8f61aea84ae)
+        ;
+
+        
+    
+    
+            marker_b5dad86f91e67a1bdf9eecb5378b16f3.bindTooltip(
+                `<div>
+                     KFC - El Jardín
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b5dad86f91e67a1bdf9eecb5378b16f3.setIcon(icon_d52149f8e3e22fdbeeb51af97b857743);
+            
+    
+            var marker_3b3f26a23ed8b5356c24d454cf67019f = L.marker(
+                [-0.1978847, -78.495637],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_e90be5c505228062edc3764e8861dedf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_62efca1a7a25f16e516d457f61e2e6c6 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_5c13e30133347f08c4654eb106643c7b = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBDb2zDs24gQXV0b3LDoXBpZG88L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIENyaXN0w7NiYWwgQ29sw7NuLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_62efca1a7a25f16e516d457f61e2e6c6.setContent(i_frame_5c13e30133347f08c4654eb106643c7b);
+            
+        
+
+        marker_3b3f26a23ed8b5356c24d454cf67019f.bindPopup(popup_62efca1a7a25f16e516d457f61e2e6c6)
+        ;
+
+        
+    
+    
+            marker_3b3f26a23ed8b5356c24d454cf67019f.bindTooltip(
+                `<div>
+                     KFC - Colón Autorápido
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3b3f26a23ed8b5356c24d454cf67019f.setIcon(icon_e90be5c505228062edc3764e8861dedf);
+            
+    
+            var marker_7b5df179028ff0291e24696d3bc73945 = L.marker(
+                [-0.2017204, -78.486517],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_f815f1989560f306afafbdbca4148696 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fb0d235d65ac2aba51189587e42e9af3 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_73ca61de5c38e6dedb6dc7147caeeff9 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBCYWNhIE9ydGl6PC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IEF2LiBDcmlzdMOzYmFsIENvbMOzbiwgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_fb0d235d65ac2aba51189587e42e9af3.setContent(i_frame_73ca61de5c38e6dedb6dc7147caeeff9);
+            
+        
+
+        marker_7b5df179028ff0291e24696d3bc73945.bindPopup(popup_fb0d235d65ac2aba51189587e42e9af3)
+        ;
+
+        
+    
+    
+            marker_7b5df179028ff0291e24696d3bc73945.bindTooltip(
+                `<div>
+                     KFC - Baca Ortiz
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7b5df179028ff0291e24696d3bc73945.setIcon(icon_f815f1989560f306afafbdbca4148696);
+            
+    
+            var marker_0b90ee790c9e50d26ed0b40ca162d03b = L.marker(
+                [-0.2083473, -78.4955766],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_3ecbcf2a40fece5212ce0248dc1a8a25 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_009ce95a4982812203f95977ef078894 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_b9dbf74b6d3fb7ae840af2781d15a943 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBQYXRyaWE8L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIDYgZGUgRGljaWVtYnJlLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_009ce95a4982812203f95977ef078894.setContent(i_frame_b9dbf74b6d3fb7ae840af2781d15a943);
+            
+        
+
+        marker_0b90ee790c9e50d26ed0b40ca162d03b.bindPopup(popup_009ce95a4982812203f95977ef078894)
+        ;
+
+        
+    
+    
+            marker_0b90ee790c9e50d26ed0b40ca162d03b.bindTooltip(
+                `<div>
+                     KFC - Patria
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0b90ee790c9e50d26ed0b40ca162d03b.setIcon(icon_3ecbcf2a40fece5212ce0248dc1a8a25);
+            
+    
+            var marker_3c78efc19ffb7dd4e31ce464afe5bdd0 = L.marker(
+                [-0.2183534, -78.5080963],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_a31429d66ff5e533a4679dccd65fbf33 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e0fd31a2558e0fb360ab091d7b7eaf1b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_b11bb6b25ce6aa5f95b376cc0e6fe4f9 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBDb2xvbmlhbDwvaDQ+CiAgICAgICAgPHAgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsiPgogICAgICAgIDxiPkFkZHJlc3M6PC9iPiBHdWF5YXF1aWwgTjktMDIgeSBFc21lcmFsZGFzLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_e0fd31a2558e0fb360ab091d7b7eaf1b.setContent(i_frame_b11bb6b25ce6aa5f95b376cc0e6fe4f9);
+            
+        
+
+        marker_3c78efc19ffb7dd4e31ce464afe5bdd0.bindPopup(popup_e0fd31a2558e0fb360ab091d7b7eaf1b)
+        ;
+
+        
+    
+    
+            marker_3c78efc19ffb7dd4e31ce464afe5bdd0.bindTooltip(
+                `<div>
+                     KFC - Colonial
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3c78efc19ffb7dd4e31ce464afe5bdd0.setIcon(icon_a31429d66ff5e533a4679dccd65fbf33);
+            
+    
+            var marker_cba64918838da8480531e7f68c369a11 = L.marker(
+                [-0.2204288, -78.5142519],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_4a3528bdccdcea034b249180d89ad282 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6dd0c2f077866223d79a2ffc44601060 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_cbf1cd9c6d30668778672f1f836fb72b = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBTYW4gRnJhbmNpc2NvIGRlIFF1aXRvPC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IFNlYmFzdGnDoW4gZGUgQmVuYWxjw6F6YXIsIFF1aXRvPGJyPgogICAgICAgIDwvcD4KICAgIA==" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_6dd0c2f077866223d79a2ffc44601060.setContent(i_frame_cbf1cd9c6d30668778672f1f836fb72b);
+            
+        
+
+        marker_cba64918838da8480531e7f68c369a11.bindPopup(popup_6dd0c2f077866223d79a2ffc44601060)
+        ;
+
+        
+    
+    
+            marker_cba64918838da8480531e7f68c369a11.bindTooltip(
+                `<div>
+                     KFC - San Francisco de Quito
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cba64918838da8480531e7f68c369a11.setIcon(icon_4a3528bdccdcea034b249180d89ad282);
+            
+    
+            var marker_ff974ddaef904b8a9fb600bee8c31bf5 = L.marker(
+                [-0.2436176, -78.4826472],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_d646a81d8acf1ae738073ada7cbee48e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_be87b76b9cdf9dccebcc4e30f1067f56 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_9125e8fd3e353bf4ded4d1c85aa17e3c = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBNQVNHQVM8L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIFNpbcOzbiBCb2zDrXZhciwgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_be87b76b9cdf9dccebcc4e30f1067f56.setContent(i_frame_9125e8fd3e353bf4ded4d1c85aa17e3c);
+            
+        
+
+        marker_ff974ddaef904b8a9fb600bee8c31bf5.bindPopup(popup_be87b76b9cdf9dccebcc4e30f1067f56)
+        ;
+
+        
+    
+    
+            marker_ff974ddaef904b8a9fb600bee8c31bf5.bindTooltip(
+                `<div>
+                     KFC - MASGAS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ff974ddaef904b8a9fb600bee8c31bf5.setIcon(icon_d646a81d8acf1ae738073ada7cbee48e);
+            
+    
+            var marker_25c304325e3a3ab6c208d32534cb696f = L.marker(
+                [-0.2444214, -78.5180541],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_5cb0ead3c1c3896fba7547cfd7ced98b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c500a38f45649ada491f50fc252b4041 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_e9ada0383ac1d1166d80ffcce1edbbf3 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBWaWxsYWZsb3JhPC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IENhbGxlIEVsIENvcmF6w7NuIHkgQ2FzaXRhZ3VhLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_c500a38f45649ada491f50fc252b4041.setContent(i_frame_e9ada0383ac1d1166d80ffcce1edbbf3);
+            
+        
+
+        marker_25c304325e3a3ab6c208d32534cb696f.bindPopup(popup_c500a38f45649ada491f50fc252b4041)
+        ;
+
+        
+    
+    
+            marker_25c304325e3a3ab6c208d32534cb696f.bindTooltip(
+                `<div>
+                     KFC - Villaflora
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_25c304325e3a3ab6c208d32534cb696f.setIcon(icon_5cb0ead3c1c3896fba7547cfd7ced98b);
+            
+    
+            var marker_00b58ae8dc4b4fba9ed07eae88d90d23 = L.marker(
+                [-0.2481441, -78.5336326],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_0fc2387f8603fa435a6fa3210ea6349d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_371f6f050aae3802b8d9808a6b1b7236 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_358dccef75e160e8ad6a2303e89fabf2 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBUZW5pZW50ZSBNaWNoZWxlbmE8L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIFRlbmllbnRlIE1pY2hlbGVuYSB5IEx1aXMgTWluYWNobywgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_371f6f050aae3802b8d9808a6b1b7236.setContent(i_frame_358dccef75e160e8ad6a2303e89fabf2);
+            
+        
+
+        marker_00b58ae8dc4b4fba9ed07eae88d90d23.bindPopup(popup_371f6f050aae3802b8d9808a6b1b7236)
+        ;
+
+        
+    
+    
+            marker_00b58ae8dc4b4fba9ed07eae88d90d23.bindTooltip(
+                `<div>
+                     KFC - Teniente Michelena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_00b58ae8dc4b4fba9ed07eae88d90d23.setIcon(icon_0fc2387f8603fa435a6fa3210ea6349d);
+            
+    
+            var marker_64eacf284915dbf3fb3cd3ee96b4b365 = L.marker(
+                [-0.2523939, -78.5227192],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_4aa5af176cadc781ad3a4a1dabdeb62a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f8b8574de16aa228a07dace3ff020c81 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_bbde2a1b9751ed106548c572ad32299a = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBFbCBSZWNyZW88L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIFBlZHJvIFZpY2VudGUgTWFsZG9uYWRvIFMxMS0xMjIsIFF1aXRvPGJyPgogICAgICAgIDwvcD4KICAgIA==" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_f8b8574de16aa228a07dace3ff020c81.setContent(i_frame_bbde2a1b9751ed106548c572ad32299a);
+            
+        
+
+        marker_64eacf284915dbf3fb3cd3ee96b4b365.bindPopup(popup_f8b8574de16aa228a07dace3ff020c81)
+        ;
+
+        
+    
+    
+            marker_64eacf284915dbf3fb3cd3ee96b4b365.bindTooltip(
+                `<div>
+                     KFC - El Recreo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_64eacf284915dbf3fb3cd3ee96b4b365.setIcon(icon_4aa5af176cadc781ad3a4a1dabdeb62a);
+            
+    
+            var marker_7490b33330914c3bdb2b159964e8c51e = L.marker(
+                [-0.2677716, -78.5376602],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_a0fc4820e20e2488ddc588690e6b5b24 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b577f9123101a1fabd2bfa0574f78b14 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_e2e1af51ff72b4c18da690efc8e10b91 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBTb2xhbmRhPC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IEJlbmFuY2lvIEVzdGFuZG9xdWUsIFF1aXRvPGJyPgogICAgICAgIDwvcD4KICAgIA==" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_b577f9123101a1fabd2bfa0574f78b14.setContent(i_frame_e2e1af51ff72b4c18da690efc8e10b91);
+            
+        
+
+        marker_7490b33330914c3bdb2b159964e8c51e.bindPopup(popup_b577f9123101a1fabd2bfa0574f78b14)
+        ;
+
+        
+    
+    
+            marker_7490b33330914c3bdb2b159964e8c51e.bindTooltip(
+                `<div>
+                     KFC - Solanda
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7490b33330914c3bdb2b159964e8c51e.setIcon(icon_a0fc4820e20e2488ddc588690e6b5b24);
+            
+    
+            var marker_4f8065445b0f33d46aafdfcf1d524762 = L.marker(
+                [-0.2675118, -78.5521388],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_8f7f30ae9ba5873bab9baaaac588db03 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8614826cfdd6556eb07c334e866e51bc = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_38fa415d5522c1a7a1504a846b0c3c6e = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBNYXJpc2NhbCBTdWNyZTwvaDQ+CiAgICAgICAgPHAgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsiPgogICAgICAgIDxiPkFkZHJlc3M6PC9iPiBBdi4gTWFyaXNjYWwgU3VjcmUsIFF1aXRvPGJyPgogICAgICAgIDwvcD4KICAgIA==" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_8614826cfdd6556eb07c334e866e51bc.setContent(i_frame_38fa415d5522c1a7a1504a846b0c3c6e);
+            
+        
+
+        marker_4f8065445b0f33d46aafdfcf1d524762.bindPopup(popup_8614826cfdd6556eb07c334e866e51bc)
+        ;
+
+        
+    
+    
+            marker_4f8065445b0f33d46aafdfcf1d524762.bindTooltip(
+                `<div>
+                     KFC - Mariscal Sucre
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4f8065445b0f33d46aafdfcf1d524762.setIcon(icon_8f7f30ae9ba5873bab9baaaac588db03);
+            
+    
+            var marker_abc76bfe10d466adce8751872769410f = L.marker(
+                [-0.2791359, -78.5529861],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_982eae72fe4339809eb42959fae44c3a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e4b213ee689bc0a740d0f01b681331da = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_5e9b858bf20566c7d2f08224224e3a62 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBTYW50YSBNYXLDrWEgQ2hpbGxvZ2FsbG88L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIE1hcmlzY2FsIFN1Y3JlLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_e4b213ee689bc0a740d0f01b681331da.setContent(i_frame_5e9b858bf20566c7d2f08224224e3a62);
+            
+        
+
+        marker_abc76bfe10d466adce8751872769410f.bindPopup(popup_e4b213ee689bc0a740d0f01b681331da)
+        ;
+
+        
+    
+    
+            marker_abc76bfe10d466adce8751872769410f.bindTooltip(
+                `<div>
+                     KFC - Santa María Chillogallo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_abc76bfe10d466adce8751872769410f.setIcon(icon_982eae72fe4339809eb42959fae44c3a);
+            
+    
+            var marker_d0a6aba82f542c21247de0d206573715 = L.marker(
+                [-0.2848952, -78.5442953],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_f6199766833d4ab393770c173b15f955 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_81d57842f1fb67ffa90e50d79cafbf7a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_b951b734011609f9dc017e28f19d2a4f = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBNb3LDoW4gVmFsdmVyZGU8L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXZlIE1vcsOhbiBWYWx2ZXJkZSwgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_81d57842f1fb67ffa90e50d79cafbf7a.setContent(i_frame_b951b734011609f9dc017e28f19d2a4f);
+            
+        
+
+        marker_d0a6aba82f542c21247de0d206573715.bindPopup(popup_81d57842f1fb67ffa90e50d79cafbf7a)
+        ;
+
+        
+    
+    
+            marker_d0a6aba82f542c21247de0d206573715.bindTooltip(
+                `<div>
+                     KFC - Morán Valverde
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d0a6aba82f542c21247de0d206573715.setIcon(icon_f6199766833d4ab393770c173b15f955);
+            
+    
+            var marker_fb8ff1928120cb675b063495f73a2a9c = L.marker(
+                [-0.285808, -78.543255],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_370b20092fb3100b061a77fca8095c41 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c8fa19e5e866283dc5a4a1a913f13696 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_f098e7a2cd2c24983a88e14850820bc3 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBRdWljZW50cm8gU3VyIFBhdGlvPC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IEF2LiBNb3LDoW4gVmFsdmVyZGUsIEMuQy4gUXVpY2VudHJvIFN1ciwgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_c8fa19e5e866283dc5a4a1a913f13696.setContent(i_frame_f098e7a2cd2c24983a88e14850820bc3);
+            
+        
+
+        marker_fb8ff1928120cb675b063495f73a2a9c.bindPopup(popup_c8fa19e5e866283dc5a4a1a913f13696)
+        ;
+
+        
+    
+    
+            marker_fb8ff1928120cb675b063495f73a2a9c.bindTooltip(
+                `<div>
+                     KFC - Quicentro Sur Patio
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fb8ff1928120cb675b063495f73a2a9c.setIcon(icon_370b20092fb3100b061a77fca8095c41);
+            
+    
+            var marker_85da93956ea217f71284e36008cb6a2c = L.marker(
+                [-0.3005195, -78.5574203],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_b1b13eb0f76b93c1418f8461558d9b21 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8948431439d1eac78be7bfcac2b27bd9 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_24eac691f92c69f23637bf18a72ee2f3 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBRdWl0dW1iZTwvaDQ+CiAgICAgICAgPHAgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsiPgogICAgICAgIDxiPkFkZHJlc3M6PC9iPiBBdi4gR3VheWFuYXkgw5FhbiwgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_8948431439d1eac78be7bfcac2b27bd9.setContent(i_frame_24eac691f92c69f23637bf18a72ee2f3);
+            
+        
+
+        marker_85da93956ea217f71284e36008cb6a2c.bindPopup(popup_8948431439d1eac78be7bfcac2b27bd9)
+        ;
+
+        
+    
+    
+            marker_85da93956ea217f71284e36008cb6a2c.bindTooltip(
+                `<div>
+                     KFC - Quitumbe
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_85da93956ea217f71284e36008cb6a2c.setIcon(icon_b1b13eb0f76b93c1418f8461558d9b21);
+            
+    
+            var marker_b8cb3752adb1abec4f14970cdeca9292 = L.marker(
+                [-0.2152175, -78.4062397],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_62e65ef4ab2e0720260cfec5cf6496cb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a0974726f6293ecae771e183e64502ec = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_966730c1101aad5ff49437cf0340cce6 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBUdW1iYWNvPC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IEF2LiBJbnRlcm9jZWFuaWNhLCBRdWl0bzxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_a0974726f6293ecae771e183e64502ec.setContent(i_frame_966730c1101aad5ff49437cf0340cce6);
+            
+        
+
+        marker_b8cb3752adb1abec4f14970cdeca9292.bindPopup(popup_a0974726f6293ecae771e183e64502ec)
+        ;
+
+        
+    
+    
+            marker_b8cb3752adb1abec4f14970cdeca9292.bindTooltip(
+                `<div>
+                     KFC - Tumbaco
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b8cb3752adb1abec4f14970cdeca9292.setIcon(icon_62e65ef4ab2e0720260cfec5cf6496cb);
+            
+    
+            var marker_1885e74bed54290adb9fcfe1381e3f73 = L.marker(
+                [-0.3033802, -78.454471],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_d0deedf488cde48eef9abb49047f03cd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fcc03ed60d6f589b193d77d5dfc68c8f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_15bf2917f00bf2493dadcbd3f71fee80 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgU2FuIFJhZmFlbCBBdXRvcsOhcGlkbzwvaDQ+CiAgICAgICAgPHAgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsiPgogICAgICAgIDxiPkFkZHJlc3M6PC9iPiBBdi4gR3JhbC4gUnVtacOxYWh1aSwgUXVpdG88YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_fcc03ed60d6f589b193d77d5dfc68c8f.setContent(i_frame_15bf2917f00bf2493dadcbd3f71fee80);
+            
+        
+
+        marker_1885e74bed54290adb9fcfe1381e3f73.bindPopup(popup_fcc03ed60d6f589b193d77d5dfc68c8f)
+        ;
+
+        
+    
+    
+            marker_1885e74bed54290adb9fcfe1381e3f73.bindTooltip(
+                `<div>
+                     KFC San Rafael Autorápido
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1885e74bed54290adb9fcfe1381e3f73.setIcon(icon_d0deedf488cde48eef9abb49047f03cd);
+            
+    
+            var marker_17133a6b9eee21144260a8f6d07a155b = L.marker(
+                [-0.3080878, -78.4505367],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_0a8b119f56b5cd82500fd81368068d83 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a67ba0a4048fd2b2db4e0477f614cce7 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_fa1207f1fbe678518319972d17cc6f9c = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBTYW4gTHVpcyBTaG9wcGluZzwvaDQ+CiAgICAgICAgPHAgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsiPgogICAgICAgIDxiPkFkZHJlc3M6PC9iPiBBdi4gU2FuIEx1aXMsIFNhbmdvbHF1w608YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_a67ba0a4048fd2b2db4e0477f614cce7.setContent(i_frame_fa1207f1fbe678518319972d17cc6f9c);
+            
+        
+
+        marker_17133a6b9eee21144260a8f6d07a155b.bindPopup(popup_a67ba0a4048fd2b2db4e0477f614cce7)
+        ;
+
+        
+    
+    
+            marker_17133a6b9eee21144260a8f6d07a155b.bindTooltip(
+                `<div>
+                     KFC - San Luis Shopping
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_17133a6b9eee21144260a8f6d07a155b.setIcon(icon_0a8b119f56b5cd82500fd81368068d83);
+            
+    
+            var marker_3e5021a43cfa581a0a0de155b800a0b1 = L.marker(
+                [-0.3146344, -78.4506262],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_7719868d44f3554da4baf465c889feac = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a50271a575671df60149dd81bca10e12 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_beabb7705468cd8c510cccd1ae2a7833 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgLSBTYW5nb2xxdcOtPC9oND4KICAgICAgICA8cCBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyI+CiAgICAgICAgPGI+QWRkcmVzczo8L2I+IEF2LiBHZW5lcmFsIEVucsOtcXVleiwgU2FuZ29scXXDrTxicj4KICAgICAgICA8L3A+CiAgICA=" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_a50271a575671df60149dd81bca10e12.setContent(i_frame_beabb7705468cd8c510cccd1ae2a7833);
+            
+        
+
+        marker_3e5021a43cfa581a0a0de155b800a0b1.bindPopup(popup_a50271a575671df60149dd81bca10e12)
+        ;
+
+        
+    
+    
+            marker_3e5021a43cfa581a0a0de155b800a0b1.bindTooltip(
+                `<div>
+                     KFC - Sangolquí
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3e5021a43cfa581a0a0de155b800a0b1.setIcon(icon_7719868d44f3554da4baf465c889feac);
+            
+    
+            var marker_85dea57c919ffe0efd3e99273240686e = L.marker(
+                [-0.3293654, -78.4511348],
+                {
+}
+            ).addTo(feature_group_c7bf8d86606ec94ca5a7438ef668451e);
+        
+    
+            var icon_ef8c782dfc12e8888e48cc44bea424d9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_367bdc144faa485a46bbbc4a3087e511 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_bafa2c11fad00bf9beb5675a11f5afed = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8aDQgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5LRkMgTWVnYSBTYW50YSBNYXLDrWE8L2g0PgogICAgICAgIDxwIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7Ij4KICAgICAgICA8Yj5BZGRyZXNzOjwvYj4gQXYuIEdlbmVyYWwgRW5yw61xdWV6IHkgR2FyY8OtYSBNb3Jlbm8sIFNhbmdvbHF1w608YnI+CiAgICAgICAgPC9wPgogICAg" width="250" style="border:none !important;" height="120"></iframe>`)[0];
+                popup_367bdc144faa485a46bbbc4a3087e511.setContent(i_frame_bafa2c11fad00bf9beb5675a11f5afed);
+            
+        
+
+        marker_85dea57c919ffe0efd3e99273240686e.bindPopup(popup_367bdc144faa485a46bbbc4a3087e511)
+        ;
+
+        
+    
+    
+            marker_85dea57c919ffe0efd3e99273240686e.bindTooltip(
+                `<div>
+                     KFC Mega Santa María
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_85dea57c919ffe0efd3e99273240686e.setIcon(icon_ef8c782dfc12e8888e48cc44bea424d9);
+            
+    
+            feature_group_c7bf8d86606ec94ca5a7438ef668451e.addTo(map_f304fe7654e0fe160dc10dd488822d73);
+        
+    
+            var layer_control_0057c7d587cffb19db514ef2387a8f90_layers = {
+                base_layers : {
+                    "https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}{r}.png" : tile_layer_bc61c46f5242a7bdeb96afccacd38dd0,
+                },
+                overlays :  {
+                    "KFC Quito" : feature_group_c7bf8d86606ec94ca5a7438ef668451e,
+                },
+            };
+            let layer_control_0057c7d587cffb19db514ef2387a8f90 = L.control.layers(
+                layer_control_0057c7d587cffb19db514ef2387a8f90_layers.base_layers,
+                layer_control_0057c7d587cffb19db514ef2387a8f90_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_f304fe7654e0fe160dc10dd488822d73);
+
+        
+</script>
+</html>
