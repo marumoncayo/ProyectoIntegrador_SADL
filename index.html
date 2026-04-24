@@ -85,7 +85,7 @@
     scrollbar-width:thin; scrollbar-color:var(--border) transparent;
   }
 
-  .form-section { margin-bottom:20px; }
+  .form-section { margin-bottom:18px; }
   .form-label {
     font-family:var(--mono); font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
     color:var(--muted); margin-bottom:8px; display:flex; align-items:center; gap:6px;
@@ -105,7 +105,300 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8780' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat:no-repeat; background-position:right 12px center; padding-right:32px;
   }
-  textarea { resize:none; line-height:1.6; min-height:110px; }
+  textarea { resize:none; line-height:1.6; min-height:90px; }
+
+  /* ── DÍA DE OPERACIÓN ── */
+  .dia-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .dia-chip {
+    text-align: center;
+    padding: 8px 4px;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .2s;
+    user-select: none;
+  }
+  .dia-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .dia-chip.selected {
+    background: rgba(45,90,27,.1);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .dia-chip.hoy { border-style: dashed; }
+  .pico-resumen {
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: rgba(196,57,26,.06);
+    border: 1px solid rgba(196,57,26,.2);
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--accent3);
+    line-height: 1.7;
+    letter-spacing: .3px;
+  }
+  .pico-ok {
+    background: rgba(45,90,27,.06) !important;
+    border-color: rgba(45,90,27,.2) !important;
+    color: var(--accent) !important;
+  }
+
+  /* ── ZONA SELECTOR MÚLTIPLE ── */
+  .zona-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .zona-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: all .2s;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    user-select: none;
+  }
+  .zona-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .zona-chip.selected {
+    background: rgba(45,90,27,.08);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .zona-chip input[type="checkbox"] { display: none; }
+  .zona-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border); flex-shrink: 0; transition: background .2s;
+  }
+  .zona-chip.selected .zona-dot { background: var(--accent); }
+  .zona-todas {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+
+  /* ── HORA DE OPERACIÓN ── */
+  .hora-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .hora-field label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+  input[type="time"] {
+    width: 100%;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 10px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    cursor: pointer;
+  }
+  input[type="time"]:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(45,90,27,.1);
+  }
+
+  /* ── FLOTA DE VEHÍCULOS — solo informativa ── */
+  .flota-auto-nota {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 10px;
+    background: rgba(45,90,27,.06);
+    border: 1px solid rgba(45,90,27,.2);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--accent);
+    letter-spacing: .3px;
+    line-height: 1.6;
+  }
+  .flota-auto-nota .nota-icon {
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .flota-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .flota-card {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    /* sin cursor pointer ni onclick — solo informativo */
+    transition: border-color .2s;
+    position: relative;
+  }
+  .flota-card.nocturno {
+    border-color: rgba(30,100,180,.3);
+  }
+  /* indicador de restricción de pico y placa activa */
+  .flota-card.con-restriccion {
+    border-color: rgba(196,57,26,.35);
+  }
+  /* indicador de conductor fuera de horario de operación */
+  .flota-card.fuera-horario {
+    opacity: 0.48;
+  }
+  .flota-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .flota-conductor {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink);
+    flex: 1;
+  }
+  .flota-turno-badge {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 1px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .badge-manana {
+    background: rgba(232,160,32,.12);
+    color: #b87d10;
+    border: 1px solid rgba(232,160,32,.3);
+  }
+  .badge-noche {
+    background: rgba(30,100,180,.12);
+    color: #1e64b4;
+    border: 1px solid rgba(30,100,180,.3);
+  }
+  .flota-info {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .flota-info span {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .flota-restriccion {
+    margin-top: 4px;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--accent3);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .flota-aviso {
+    margin-top: 6px;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    background: rgba(196,57,26,.05);
+    border: 1px solid rgba(196,57,26,.15);
+    border-radius: 6px;
+    padding: 5px 8px;
+    display: none;
+  }
+  .flota-aviso.visible { display: block; }
+  /* pequeño badge "fuera de turno" en la esquina */
+  .flota-fuera-tag {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-family: var(--mono);
+    font-size: 8px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: rgba(138,135,128,.1);
+    border: 1px solid rgba(138,135,128,.25);
+    color: var(--muted);
+    letter-spacing: .5px;
+    display: none;
+  }
+  .flota-card.fuera-horario .flota-fuera-tag { display: block; }
+
+  /* ── INCIDENTES ── */
+  .incidente-section { margin-bottom:18px; }
+  .incidente-label {
+    font-family:var(--mono); font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--accent2); margin-bottom:8px; display:flex; align-items:center; gap:6px;
+  }
+  .incidente-label .opt-tag {
+    font-size:9px; color:var(--muted); font-weight:400; letter-spacing:1px;
+    background: rgba(232,160,32,.1); border:1px solid rgba(232,160,32,.3);
+    border-radius:4px; padding:1px 6px; text-transform:uppercase;
+  }
+  #incidentes {
+    width:100%; background:var(--bg);
+    border:1.5px solid rgba(232,160,32,.4);
+    border-radius:8px; padding:10px 12px;
+    font-family:var(--sans); font-size:13px; color:var(--ink);
+    outline:none; transition:border-color .2s, box-shadow .2s;
+    resize:none; line-height:1.6; min-height:72px;
+  }
+  #incidentes:focus {
+    border-color:var(--accent2);
+    box-shadow:0 0 0 3px rgba(232,160,32,.12);
+  }
+  #incidentes::placeholder { color:var(--muted); font-size:12px; }
+
+  /* Badge de incidente gestionado en resultados */
+  .incidente-badge {
+    display:none; align-items:center; gap:6px;
+    background:rgba(232,160,32,.1); border:1px solid rgba(232,160,32,.35);
+    border-radius:6px; padding:6px 10px;
+    font-family:var(--mono); font-size:10px; color:#b87d10;
+    letter-spacing:.5px; margin-bottom:10px;
+  }
+  .incidente-badge.visible { display:flex; }
+
+  /* Bloque de paradas postergadas */
+  .postergadas-block {
+    display: none;
+    background: rgba(196,57,26,.07);
+    border: 1px solid rgba(196,57,26,.3);
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent3);
+    letter-spacing: .5px;
+    line-height: 1.9;
+  }
+  .postergadas-block.visible { display: block; }
+  .postergadas-title { font-weight: 700; margin-bottom: 4px; }
 
   .btn-submit {
     width:100%; background:var(--accent); color:white; border:none; border-radius:10px;
@@ -160,12 +453,7 @@
 
   /* ── MAP PANEL ── */
   .panel-map { position:relative; overflow:hidden; height:100%; }
-
-  #map-iframe {
-    width:100%; height:100%;
-    border:none; display:block;
-    pointer-events: auto;
-  }
+  #map-iframe { width:100%; height:100%; border:none; display:block; pointer-events: auto; }
 
   /* ── RIGHT PANEL ── */
   .panel-right {
@@ -209,7 +497,6 @@
   .route-stop { display:flex; align-items:flex-start; gap:10px; padding:5px 0; }
   .stop-line  { display:flex; flex-direction:column; align-items:center; flex-shrink:0; margin-top:3px; }
   .stop-num   { width:22px; height:22px; border-radius:50%; background:var(--accent); color:white; font-family:var(--mono); font-size:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .stop-num.origin { background:var(--accent2); }
   .stop-connector  { width:1.5px; height:14px; background:var(--border); margin:2px 0; }
   .stop-info  { flex:1; min-width:0; }
   .stop-name  { font-size:12px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -217,6 +504,23 @@
 
   .algo-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(45,90,27,.08); border:1px solid rgba(45,90,27,.2); border-radius:6px; padding:5px 10px; font-family:var(--mono); font-size:10px; color:var(--accent); letter-spacing:1px; margin-bottom:10px; }
   .algo-text  { font-size:12px; color:var(--ink); line-height:1.7; opacity:.85; }
+
+  .vehicle-section { margin-bottom:14px; }
+  .vehicle-header {
+    display:flex; align-items:center; gap:8px;
+    padding: 7px 10px; border-radius:7px; margin-bottom:6px;
+    font-family:var(--mono); font-size:10px; font-weight:600;
+    letter-spacing:1px; text-transform:uppercase;
+  }
+  .vehicle-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .v-color-0 { background:rgba(45,90,27,.12);  color:var(--accent);  border:1px solid rgba(45,90,27,.25); }
+  .v-color-1 { background:rgba(232,160,32,.12); color:#b87d10; border:1px solid rgba(232,160,32,.3); }
+  .v-color-2 { background:rgba(196,57,26,.10);  color:var(--accent3); border:1px solid rgba(196,57,26,.25); }
+  .v-color-3 { background:rgba(30,100,180,.10); color:#1e64b4; border:1px solid rgba(30,100,180,.25); }
+  .dot-0 { background:var(--accent); }
+  .dot-1 { background:var(--accent2); }
+  .dot-2 { background:var(--accent3); }
+  .dot-3 { background:#1e64b4; }
 
   .llm-header { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
   .llm-icon   { width:20px; height:20px; background:var(--dark); border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:11px; flex-shrink:0; }
@@ -253,52 +557,180 @@
     </div>
     <div class="panel-body">
 
+      <!-- PUNTO DE PARTIDA -->
       <div class="form-section">
         <div class="form-label">Punto de partida <span class="req">*</span></div>
         <select id="origen">
           <option value="">Seleccionar origen...</option>
-          <option value="banco">Banco de Alimentos (Av. Mariana de Jesús)</option>
+          <option value="banco">Banco de Alimentos (Av. Maldonado y Saraguro)</option>
           <option value="norte">Bodega Norte (Carcelén)</option>
           <option value="sur">Bodega Sur (Quitumbe)</option>
         </select>
       </div>
 
+      <!-- ZONA DE COBERTURA — selección múltiple -->
       <div class="form-section">
-        <div class="form-label">Zona de cobertura</div>
-        <select id="zona">
-          <option value="todas">Todas las zonas</option>
-          <option value="norte">Norte</option>
-          <option value="centro-norte">Centro-Norte</option>
-          <option value="centro">Centro e Histórico</option>
-          <option value="sur">Sur</option>
-          <option value="valles">Valles</option>
-        </select>
+        <div class="form-label">Zona de cobertura <span class="req">*</span></div>
+        <div class="zona-grid" id="zona-grid">
+          <label class="zona-chip zona-todas" id="chip-todas">
+            <input type="checkbox" id="zona-todas-cb" onchange="toggleTodas(this)">
+            <div class="zona-dot"></div>
+            Todas las zonas
+          </label>
+          <label class="zona-chip" id="chip-norte">
+            <input type="checkbox" id="zona-norte-cb" onchange="actualizarZonas()">
+            <div class="zona-dot"></div>
+            Norte
+          </label>
+          <label class="zona-chip" id="chip-centro-norte">
+            <input type="checkbox" id="zona-centro-norte-cb" onchange="actualizarZonas()">
+            <div class="zona-dot"></div>
+            Centro-Norte
+          </label>
+          <label class="zona-chip" id="chip-centro">
+            <input type="checkbox" id="zona-centro-cb" onchange="actualizarZonas()">
+            <div class="zona-dot"></div>
+            Centro
+          </label>
+          <label class="zona-chip" id="chip-sur">
+            <input type="checkbox" id="zona-sur-cb" onchange="actualizarZonas()">
+            <div class="zona-dot"></div>
+            Sur
+          </label>
+          <label class="zona-chip" id="chip-valles">
+            <input type="checkbox" id="zona-valles-cb" onchange="actualizarZonas()">
+            <div class="zona-dot"></div>
+            Valles
+          </label>
+        </div>
       </div>
 
+      <!-- DÍA DE OPERACIÓN -->
       <div class="form-section">
-        <div class="form-label">Restricción de tiempo</div>
-        <select id="tiempo">
-          <option value="none">Sin restricción</option>
-          <option value="2h">Máximo 2 horas</option>
-          <option value="3h">Máximo 3 horas</option>
-          <option value="4h">Máximo 4 horas</option>
-          <option value="manana">Solo mañana (antes de 12:00)</option>
-          <option value="tarde">Solo tarde (después de 12:00)</option>
-        </select>
+        <div class="form-label">Día de operación <span class="req">*</span></div>
+        <div class="dia-grid" id="dia-grid">
+          <div class="dia-chip" id="chip-dia-1" onclick="seleccionarDia(1)">Lun</div>
+          <div class="dia-chip" id="chip-dia-2" onclick="seleccionarDia(2)">Mar</div>
+          <div class="dia-chip" id="chip-dia-3" onclick="seleccionarDia(3)">Mié</div>
+          <div class="dia-chip" id="chip-dia-4" onclick="seleccionarDia(4)">Jue</div>
+          <div class="dia-chip" id="chip-dia-5" onclick="seleccionarDia(5)">Vie</div>
+          <div class="dia-chip" id="chip-dia-6" onclick="seleccionarDia(6)">Sáb</div>
+          <div class="dia-chip" id="chip-dia-0" onclick="seleccionarDia(0)">Dom</div>
+        </div>
+        <div class="pico-resumen" id="pico-resumen" style="display:none"></div>
       </div>
 
+      <!-- HORA DE OPERACIÓN -->
       <div class="form-section">
-        <div class="form-label">Capacidad del vehículo</div>
-        <select id="capacidad">
-          <option value="small">Camioneta pequeña (hasta 500 kg)</option>
-          <option value="medium">Furgoneta mediana (500–1000 kg)</option>
-          <option value="large">Camión (1000–2000 kg)</option>
-        </select>
+        <div class="form-label">Horario de operación <span class="req">*</span></div>
+        <div class="hora-row">
+          <div class="hora-field">
+            <label>Hora inicio</label>
+            <input type="time" id="hora-inicio" value="06:00" onchange="actualizarEstadoFlota()">
+          </div>
+          <div class="hora-field">
+            <label>Hora fin</label>
+            <input type="time" id="hora-fin" value="12:00" onchange="actualizarEstadoFlota()">
+          </div>
+        </div>
       </div>
 
+      <!-- FLOTA DISPONIBLE — solo informativa, el agente decide -->
+      <div class="form-section">
+        <div class="form-label">Flota disponible</div>
+        <div class="flota-auto-nota">
+          <span class="nota-icon">✦</span>
+          El agente asignará vehículos automáticamente según capacidad, horarios y pico y placa del día.
+        </div>
+        <div class="flota-cards" id="flota-cards">
+
+          <!-- Conductor 01 — Camión mañana -->
+          <div class="flota-card" id="card-c01">
+            <div class="flota-card-header">
+              <span class="flota-conductor">Conductor 01 — Camión</span>
+              <span class="flota-turno-badge badge-manana">Mañana</span>
+            </div>
+            <div class="flota-info">
+              Capacidad: <span>2000 kg · máx 20 paradas</span><br>
+              Horario: <span>06:00 – 15:00</span> · Placa termina en <span>3</span><br>
+              Días: <span>Lun – Vie</span>
+            </div>
+            <div class="flota-restriccion" id="rest-c01" style="display:none">
+              ⚠ Restricción pico y placa en horario seleccionado
+            </div>
+            <span class="flota-fuera-tag">FUERA DE TURNO</span>
+          </div>
+
+          <!-- Conductor 02 — Furgoneta mañana -->
+          <div class="flota-card" id="card-c02">
+            <div class="flota-card-header">
+              <span class="flota-conductor">Conductor 02 — Furgoneta</span>
+              <span class="flota-turno-badge badge-manana">Mañana</span>
+            </div>
+            <div class="flota-info">
+              Capacidad: <span>750 kg · máx 7 paradas</span><br>
+              Horario: <span>06:00 – 15:00</span> · Placa termina en <span>7</span><br>
+              Días: <span>Lun – Vie</span>
+            </div>
+            <div class="flota-restriccion" id="rest-c02" style="display:none">
+              ⚠ Restricción pico y placa en horario seleccionado
+            </div>
+            <span class="flota-fuera-tag">FUERA DE TURNO</span>
+          </div>
+
+          <!-- Conductor 03 — Furgoneta mañana/sábado -->
+          <div class="flota-card" id="card-c03">
+            <div class="flota-card-header">
+              <span class="flota-conductor">Conductor 03 — Furgoneta</span>
+              <span class="flota-turno-badge badge-manana">Mañana</span>
+            </div>
+            <div class="flota-info">
+              Capacidad: <span>750 kg · máx 7 paradas</span><br>
+              Horario: <span>06:00 – 15:00</span> · Placa termina en <span>5</span><br>
+              Días: <span>Lun – Vie + Sáb</span>
+            </div>
+            <div class="flota-restriccion" id="rest-c03" style="display:none">
+              ⚠ Restricción pico y placa en horario seleccionado
+            </div>
+            <span class="flota-fuera-tag">FUERA DE TURNO</span>
+          </div>
+
+          <!-- Conductor 04 — Camioneta nocturna -->
+          <div class="flota-card nocturno" id="card-c04">
+            <div class="flota-card-header">
+              <span class="flota-conductor">Conductor 04 — Camioneta</span>
+              <span class="flota-turno-badge badge-noche">Noche</span>
+            </div>
+            <div class="flota-info">
+              Capacidad: <span>500 kg · máx 5 paradas</span><br>
+              Horario: <span>16:00 – 22:00</span> · Placa termina en <span>1</span><br>
+              Días: <span>Lun – Vie + Sáb</span>
+            </div>
+            <div class="flota-restriccion" id="rest-c04" style="display:none">
+              ⚠ Restricción pico y placa en horario seleccionado
+            </div>
+            <div class="flota-aviso" id="aviso-c04">
+              🔴 Turno nocturno — el sistema evitará automáticamente zonas de alto riesgo después de las 20:00
+            </div>
+            <span class="flota-fuera-tag">FUERA DE TURNO</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DESCRIPCIÓN -->
       <div class="form-section">
         <div class="form-label">Descripción de la solicitud <span class="req">*</span></div>
         <textarea id="observaciones" placeholder="Ej: Necesitamos recoger alimentos del norte de Quito, hay disponibilidad en Carcelén y Calderón, preferimos terminar antes del mediodía porque los alimentos son perecederos..."></textarea>
+      </div>
+
+      <!-- INCIDENTES VIALES -->
+      <div class="incidente-section">
+        <div class="incidente-label">
+          ⚠ Incidentes viales
+          <span class="opt-tag">opcional</span>
+        </div>
+        <textarea id="incidentes" placeholder="Ej: Hay un accidente en Av. Mariscal Sucre, tráfico en Av. Maldonado, cierre en Av. Occidental..."></textarea>
       </div>
 
       <button class="btn-submit" id="btn-submit" onclick="enviarSolicitud()">
@@ -317,7 +749,7 @@
   <div class="panel-map">
     <iframe
       id="map-iframe"
-      src="Quito's EcoMap.html"
+      src="QuitoKFCMap.html"
       title="Mapa KFC Quito"
       scrolling="no">
     </iframe>
@@ -330,7 +762,6 @@
       <div class="panel-title">Resultado &<br><span>Análisis</span></div>
     </div>
 
-    <!-- Placeholder — visible hasta que llegue la respuesta del agente -->
     <div class="results-placeholder" id="results-placeholder">
       <div class="ph-icon">📊</div>
       <div class="ph-text">
@@ -338,18 +769,16 @@
         Incluirá:<br>
         · Ruta óptima<br>
         · Tiempo estimado<br>
-        · Justificación TSP<br>
+        · Justificación TSP/VRP<br>
         · Análisis del LLM
       </div>
     </div>
 
-    <!-- Loading — visible mientras n8n procesa -->
     <div class="results-loading" id="results-loading">
       <div class="loading-spinner"></div>
       <div class="ph-text">Procesando solicitud<br>en el agente...</div>
     </div>
 
-    <!-- Resultados — se mostrará cuando el agente responda -->
     <div class="results-body" id="results-body">
       <div class="metrics-row">
         <div class="metric-card">
@@ -372,6 +801,13 @@
 
       <div class="result-section">
         <div class="result-section-title">Ruta óptima</div>
+        <div class="incidente-badge" id="incidente-badge">
+          ⚠ Ruta alternativa aplicada por incidente vial
+        </div>
+        <div class="postergadas-block" id="postergadas-block">
+          <div class="postergadas-title">⚠ POSTERGADAS PARA PRÓXIMA OPERACIÓN</div>
+          <div id="postergadas-lista"></div>
+        </div>
         <div id="route-steps"></div>
       </div>
 
@@ -393,83 +829,279 @@
 </div>
 
 <script>
-const LABELS = {
-  origen:   { banco:"Banco de Alimentos", norte:"Bodega Norte", sur:"Bodega Sur" },
-  zona:     { todas:"Todas las zonas", norte:"Norte", "centro-norte":"Centro-Norte", centro:"Centro e Histórico", sur:"Sur", valles:"Valles" },
-  tiempo:   { none:"Sin restricción", "2h":"Máx. 2 horas", "3h":"Máx. 3 horas", "4h":"Máx. 4 horas", manana:"Solo mañana", tarde:"Solo tarde" },
-  capacidad:{ small:"Camioneta pequeña", medium:"Furgoneta mediana", large:"Camión" },
+// ─────────────────────────────────────────
+// DATOS DE CONDUCTORES Y PICO Y PLACA
+// ─────────────────────────────────────────
+const CONDUCTORES = {
+  c01: { placa: 3, horario_inicio: '06:00', horario_fin: '15:00', tipo: 'Camión',            kg: 2000, max_paradas: 20, turno: 'manana', dias: [1,2,3,4,5] },
+  c02: { placa: 7, horario_inicio: '06:00', horario_fin: '15:00', tipo: 'Furgoneta mediana', kg: 750,  max_paradas: 7,  turno: 'manana', dias: [1,2,3,4,5] },
+  c03: { placa: 5, horario_inicio: '06:00', horario_fin: '15:00', tipo: 'Furgoneta mediana', kg: 750,  max_paradas: 7,  turno: 'manana', dias: [1,2,3,4,5,6] },
+  c04: { placa: 1, horario_inicio: '16:00', horario_fin: '22:00', tipo: 'Camioneta pequeña', kg: 500,  max_paradas: 5,  turno: 'noche',  dias: [1,2,3,4,5,6] },
 };
 
-// ─────────────────────────────────────────
-// ⚙ CONFIGURACIÓN — pega aquí tu URL de n8n
-// Cuando tengas el webhook activo reemplaza
-// la línea de abajo con tu URL real, ejemplo:
-// const N8N_WEBHOOK = "https://tu-instancia.n8n.cloud/webhook/banco-alimentos";
-// ─────────────────────────────────────────
-const N8N_WEBHOOK = "http://localhost:5678/webhook/banco-alimentos";
+const PICO_PLACA = {
+  1: [1, 2], // lunes
+  2: [3, 4], // martes
+  3: [5, 6], // miércoles
+  4: [7, 8], // jueves
+  5: [9, 0], // viernes
+  0: [],     // domingo
+  6: [],     // sábado
+};
+
+const NOMBRES_DIA = {
+  0: 'Domingo', 1: 'Lunes', 2: 'Martes', 3: 'Miércoles',
+  4: 'Jueves', 5: 'Viernes', 6: 'Sábado',
+};
+
+const LABELS_ZONA = {
+  todas: 'Todas las zonas', norte: 'Norte', 'centro-norte': 'Centro-Norte',
+  centro: 'Centro', sur: 'Sur', valles: 'Valles',
+};
+
+const LABELS_ORIGEN = {
+  banco: 'Banco de Alimentos', norte: 'Bodega Norte', sur: 'Bodega Sur',
+};
+
+const N8N_WEBHOOK = '/n8n';
 
 // ─────────────────────────────────────────
-// ENVIAR SOLICITUD → n8n
+// DÍA DE OPERACIÓN
+// ─────────────────────────────────────────
+let diaSeleccionado = null;
+
+function seleccionarDia(numDia) {
+  diaSeleccionado = numDia;
+  document.querySelectorAll('.dia-chip').forEach(chip => chip.classList.remove('selected'));
+  document.getElementById('chip-dia-' + numDia).classList.add('selected');
+
+  const resumen = document.getElementById('pico-resumen');
+  const digitos = PICO_PLACA[numDia] || [];
+
+  if (digitos.length === 0) {
+    resumen.style.display = 'block';
+    resumen.className = 'pico-resumen pico-ok';
+    resumen.textContent = '✓ ' + NOMBRES_DIA[numDia] + ' — Sin restricciones de pico y placa';
+  } else {
+    resumen.style.display = 'block';
+    resumen.className = 'pico-resumen';
+    resumen.textContent = '⚠ Pico y placa ' + NOMBRES_DIA[numDia]
+      + ': placas terminadas en ' + digitos.join(' y ')
+      + ' — restringidas 06:00–09:30 y 16:00–20:00';
+  }
+
+  actualizarEstadoFlota();
+}
+
+function getDiaSeleccionado() {
+  return diaSeleccionado !== null ? diaSeleccionado : new Date().getDay();
+}
+
+// ─────────────────────────────────────────
+// ZONAS
+// ─────────────────────────────────────────
+function toggleTodas(cb) {
+  document.querySelectorAll('.zona-chip:not(.zona-todas)').forEach(chip => {
+    const input = chip.querySelector('input');
+    input.checked = cb.checked;
+    if (cb.checked) chip.classList.add('selected');
+    else chip.classList.remove('selected');
+  });
+  const chipTodas = document.getElementById('chip-todas');
+  if (cb.checked) chipTodas.classList.add('selected');
+  else chipTodas.classList.remove('selected');
+}
+
+function actualizarZonas() {
+  document.querySelectorAll('.zona-chip:not(.zona-todas)').forEach(chip => {
+    const input = chip.querySelector('input');
+    if (input.checked) chip.classList.add('selected');
+    else chip.classList.remove('selected');
+  });
+  const zonaInputs = document.querySelectorAll('.zona-chip:not(.zona-todas) input');
+  const todas = Array.from(zonaInputs).every(i => i.checked);
+  const todasCb = document.getElementById('zona-todas-cb');
+  const chipTodas = document.getElementById('chip-todas');
+  todasCb.checked = todas;
+  if (todas) chipTodas.classList.add('selected');
+  else chipTodas.classList.remove('selected');
+}
+
+function getZonasSeleccionadas() {
+  const mapa = {
+    'zona-norte-cb': 'norte', 'zona-centro-norte-cb': 'centro-norte',
+    'zona-centro-cb': 'centro', 'zona-sur-cb': 'sur', 'zona-valles-cb': 'valles',
+  };
+  const seleccionadas = [];
+  for (const [id, val] of Object.entries(mapa)) {
+    if (document.getElementById(id).checked) seleccionadas.push(val);
+  }
+  if (seleccionadas.length === 5) return ['todas'];
+  return seleccionadas;
+}
+
+// ─────────────────────────────────────────
+// FLOTA — ACTUALIZAR ESTADO VISUAL (solo informativo)
+// Marca visualmente qué conductores tienen restricciones
+// según el horario y día seleccionado, sin permitir selección
+// ─────────────────────────────────────────
+function actualizarEstadoFlota() {
+  const horaInicio = document.getElementById('hora-inicio').value;
+  const horaFin    = document.getElementById('hora-fin').value;
+  const numDia     = getDiaSeleccionado();
+  const digitosRestringidos = PICO_PLACA[numDia] || [];
+
+  const enPicoManana = horaInicio < '09:30' && horaFin > '06:00';
+  const enPicoTarde  = horaInicio < '20:00' && horaFin > '16:00';
+  const enPico = digitosRestringidos.length > 0 && (enPicoManana || enPicoTarde);
+
+  // Mostrar aviso nocturno c04 si la operación es nocturna
+  const aviso04 = document.getElementById('aviso-c04');
+  if (horaFin > '16:00') aviso04.classList.add('visible');
+  else aviso04.classList.remove('visible');
+
+  Object.keys(CONDUCTORES).forEach(id => {
+    const c       = CONDUCTORES[id];
+    const card    = document.getElementById('card-' + id);
+    const restEl  = document.getElementById('rest-' + id);
+
+    // 1. Restricción pico y placa
+    if (enPico && digitosRestringidos.includes(c.placa)) {
+      restEl.style.display = 'flex';
+      card.classList.add('con-restriccion');
+    } else {
+      restEl.style.display = 'none';
+      card.classList.remove('con-restriccion');
+    }
+
+    // 2. Fuera de horario de operación: el turno del conductor no solapa con la ventana
+    const operacionComienzaAntesDeFin    = horaInicio < c.horario_fin;
+    const operacionTerminaDespuesDeInicio = horaFin   > c.horario_inicio;
+    const solapaHorario = operacionComienzaAntesDeFin && operacionTerminaDespuesDeInicio;
+
+    // 3. Fuera de día (c01/c02 no trabajan sábado/domingo, c04 no trabaja domingo)
+    const trabajaEsteDia = c.dias.includes(numDia);
+
+    if (!solapaHorario || !trabajaEsteDia) {
+      card.classList.add('fuera-horario');
+    } else {
+      card.classList.remove('fuera-horario');
+    }
+  });
+}
+
+// ─────────────────────────────────────────
+// CONSTRUIR DESCRIPCIÓN COMPLETA DE FLOTA PARA EL AGENTE
+// Envía toda la flota con estado calculado para que el agente decida
+// ─────────────────────────────────────────
+function construirDescripcionFlota() {
+  const horaInicio = document.getElementById('hora-inicio').value;
+  const horaFin    = document.getElementById('hora-fin').value;
+  const numDia     = getDiaSeleccionado();
+  const digitosRestringidos = PICO_PLACA[numDia] || [];
+
+  const enPicoManana = horaInicio < '09:30' && horaFin > '06:00';
+  const enPicoTarde  = horaInicio < '20:00' && horaFin > '16:00';
+  const enPico = digitosRestringidos.length > 0 && (enPicoManana || enPicoTarde);
+
+  return Object.entries(CONDUCTORES).map(([id, c]) => {
+    const tienePicoPlaca = enPico && digitosRestringidos.includes(c.placa);
+    const solapaHorario  = horaInicio < c.horario_fin && horaFin > c.horario_inicio;
+    const trabajaEsteDia = c.dias.includes(numDia);
+
+    let estado = 'DISPONIBLE';
+    if (!trabajaEsteDia)       estado = 'NO TRABAJA ESTE DIA';
+    else if (!solapaHorario)   estado = 'FUERA DE HORARIO DE TURNO';
+    else if (tienePicoPlaca)   estado = 'DISPONIBLE CON RESTRICCION PICO Y PLACA';
+
+    return `${id.toUpperCase()} [${estado}]: ${c.tipo}, ${c.kg}kg capacidad, max ${c.max_paradas} paradas, turno ${c.horario_inicio}-${c.horario_fin}, placa termina en ${c.placa}`;
+  }).join(' | ');
+}
+
+// ─────────────────────────────────────────
+// ENVIAR SOLICITUD
 // ─────────────────────────────────────────
 async function enviarSolicitud() {
   const origen        = document.getElementById('origen').value;
-  const zona          = document.getElementById('zona').value;
-  const tiempo        = document.getElementById('tiempo').value;
-  const capacidad     = document.getElementById('capacidad').value;
   const observaciones = document.getElementById('observaciones').value.trim();
+  const incidentes    = document.getElementById('incidentes').value.trim();
+  const horaInicio    = document.getElementById('hora-inicio').value;
+  const horaFin       = document.getElementById('hora-fin').value;
+  const zonas         = getZonasSeleccionadas();
 
-  if (!origen)        { alert('Selecciona un punto de partida.'); return; }
-  if (!observaciones) { alert('Describe la solicitud de rescate.'); return; }
+  if (!origen)              { alert('Selecciona un punto de partida.'); return; }
+  if (zonas.length === 0)   { alert('Selecciona al menos una zona de cobertura.'); return; }
+  if (diaSeleccionado === null) { alert('Selecciona el día de operación.'); return; }
+  if (!observaciones)       { alert('Describe la solicitud de rescate.'); return; }
 
-  // Mostrar confirmación de envío
-  mostrarConfirmacion(origen, zona, tiempo, capacidad, observaciones);
+  const zonaLabel  = zonas.includes('todas') ? 'Todas las zonas' : zonas.map(z => LABELS_ZONA[z]).join(', ');
+  const flotaDesc  = construirDescripcionFlota();
 
-  // Cambiar botón a estado de carga
+  // Capacidad total de la flota disponible (no restringida) para informar al agente
+  const numDia     = getDiaSeleccionado();
+  const horaIni    = horaInicio;
+  const horaF      = horaFin;
+  const digitosRestringidos = PICO_PLACA[numDia] || [];
+  const enPicoM    = horaIni < '09:30' && horaF > '06:00';
+  const enPicoT    = horaIni < '20:00' && horaF > '16:00';
+  const enPico     = digitosRestringidos.length > 0 && (enPicoM || enPicoT);
+
+  let capacidadDisponible = 0;
+  let vehiculosDisponibles = [];
+  Object.entries(CONDUCTORES).forEach(([id, c]) => {
+    const tienePico      = enPico && digitosRestringidos.includes(c.placa);
+    const solapaHorario  = horaIni < c.horario_fin && horaF > c.horario_inicio;
+    const trabajaHoy     = c.dias.includes(numDia);
+    if (trabajaHoy && solapaHorario && !tienePico) {
+      capacidadDisponible += c.kg;
+      vehiculosDisponibles.push(id);
+    }
+  });
+
+  const operacionNocturna = horaF > '16:00';
+
+  mostrarConfirmacion(origen, zonaLabel, horaInicio, horaFin, observaciones, incidentes);
+
   const btn = document.getElementById('btn-submit');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> Procesando...';
 
-  // Mostrar loading en panel derecho
   document.getElementById('results-placeholder').style.display = 'none';
   document.getElementById('results-loading').style.display     = 'flex';
   document.getElementById('results-body').classList.remove('visible');
 
-  // Payload que se envía a n8n
   const payload = {
     origen,
-    zona,
-    tiempo,
-    capacidad,
+    zona:               zonas.join(','),
+    zona_label:         zonaLabel,
+    dia_operacion:      diaSeleccionado,
+    dia_label:          NOMBRES_DIA[diaSeleccionado],
+    hora_inicio:        horaInicio,
+    hora_fin:           horaFin,
+    capacidad:          capacidadDisponible <= 500 ? 'small' : capacidadDisponible <= 1000 ? 'medium' : 'large',
+    capacidad_label:    `Flota disponible (${capacidadDisponible}kg total)`,
+    capacidad_total:    capacidadDisponible,
+    flota:              flotaDesc,
+    flota_ids:          vehiculosDisponibles,   // solo los que pueden operar
+    num_vehiculos:      null,                   // el agente decide cuántos usar
+    operacion_nocturna: operacionNocturna,
     observaciones,
-    origen_label:    LABELS.origen[origen],
-    zona_label:      LABELS.zona[zona],
-    tiempo_label:    LABELS.tiempo[tiempo],
-    capacidad_label: LABELS.capacidad[capacidad],
+    incidentes,
+    origen_label:       LABELS_ORIGEN[origen] || origen,
   };
 
   try {
-    const res  = await fetch(N8N_WEBHOOK, {
+    const res = await fetch(N8N_WEBHOOK, {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify(payload),
     });
-
     if (!res.ok) throw new Error(`n8n respondió con status ${res.status}`);
-
     const data = await res.json();
-
-    // Mostrar resultados en el panel derecho
     mostrarResultados(data);
-
   } catch (err) {
     document.getElementById('results-loading').style.display = 'none';
-
-    // Si el webhook aún no está listo, mostrar mensaje amigable
-    if (N8N_WEBHOOK === "TU_URL_DE_WEBHOOK_AQUI") {
-      mostrarErrorWebhook("El webhook de n8n aún no está configurado. Reemplaza N8N_WEBHOOK en el código con tu URL real.");
-    } else {
-      mostrarErrorWebhook("No se pudo conectar con n8n: " + err.message);
-    }
+    mostrarErrorWebhook("No se pudo conectar con n8n: " + err.message);
   } finally {
     btn.disabled = false;
     btn.innerHTML = '<span>📋</span> Registrar Solicitud';
@@ -477,25 +1109,31 @@ async function enviarSolicitud() {
 }
 
 // ─────────────────────────────────────────
-// MOSTRAR RESULTADOS DESDE n8n
-// Espera este JSON de n8n:
-// {
-//   "ruta": ["KFC Carcelén", "KFC Calderón", ...],
-//   "tiempo_min": 85,
-//   "distancia_km": 32.4,
-//   "algoritmo": "NN + 2-opt",
-//   "justificacion": "La ruta optimizada..."
-// }
+// MOSTRAR RESULTADOS
 // ─────────────────────────────────────────
 function mostrarResultados(data) {
   document.getElementById('results-loading').style.display = 'none';
   document.getElementById('results-body').classList.add('visible');
 
-  // Métricas
-  const ruta = data.ruta || [];
-  document.getElementById('res-stops').textContent = ruta.length;
+  if (data.map_html) {
+    const blob    = new Blob([data.map_html], { type: 'text/html' });
+    const blobUrl = URL.createObjectURL(blob);
+    document.getElementById('map-iframe').src = blobUrl;
+  }
 
-  const min = data.tiempo_min || 0;
+  const esVRP     = data.tipo === 'VRP' && data.vehiculos && data.vehiculos.length > 0;
+  const vehiculos = data.vehiculos || [];
+  const rutaTSP   = data.ruta || [];
+
+  const totalParadas = esVRP
+    ? vehiculos.reduce((acc, v) => acc + (v.ruta || []).length, 0)
+    : rutaTSP.length;
+
+  document.getElementById('res-stops').textContent = totalParadas;
+
+  const minTotal     = data.tiempo_min || 0;
+  const numVehiculos = (esVRP && vehiculos.length > 0) ? vehiculos.length : 1;
+  const min          = esVRP ? Math.round(minTotal / numVehiculos) : minTotal;
   const h = Math.floor(min / 60), m = min % 60;
   document.getElementById('res-time').innerHTML = h > 0
     ? `${h}<span class="metric-unit">h</span> ${m}<span class="metric-unit">m</span>`
@@ -503,45 +1141,109 @@ function mostrarResultados(data) {
 
   document.getElementById('res-dist').innerHTML =
     `${(data.distancia_km || 0).toFixed(1)}<span class="metric-unit">km</span>`;
-
   document.getElementById('res-algo').textContent = data.algoritmo || 'TSP';
 
-  // Pasos de ruta
+  const incidenteBadge = document.getElementById('incidente-badge');
+  if (data.incidente_gestionado) {
+    incidenteBadge.classList.add('visible');
+    const calles = (data.calles_afectadas || []).join(', ');
+    incidenteBadge.textContent = `⚠ Ruta alternativa aplicada — se evitó: ${calles}`;
+  } else {
+    incidenteBadge.classList.remove('visible');
+  }
+
+  const paradasPostergadas = data.paradas_postergadas || [];
+  const decisionIncidente  = data.decision_incidente  || '';
+  const postergadasBlock   = document.getElementById('postergadas-block');
+  const postergadasLista   = document.getElementById('postergadas-lista');
+
+  if (paradasPostergadas.length > 0 && decisionIncidente === 'postergar') {
+    postergadasBlock.classList.add('visible');
+    postergadasLista.innerHTML = paradasPostergadas.map(p => `· ${p}`).join('<br>');
+  } else {
+    postergadasBlock.classList.remove('visible');
+    postergadasLista.innerHTML = '';
+  }
+
   const stepsEl = document.getElementById('route-steps');
   stepsEl.innerHTML = '';
-  ruta.forEach((nombre, i) => {
-    const isLast = i === ruta.length - 1;
-    const div = document.createElement('div');
-    div.className = 'route-stop';
-    div.innerHTML = `
-      <div class="stop-line">
-        <div class="stop-num">${i + 1}</div>
-        ${!isLast ? '<div class="stop-connector"></div>' : ''}
-      </div>
-      <div class="stop-info">
-        <div class="stop-name">${nombre}</div>
-        <div class="stop-meta">Parada ${i + 1}</div>
-      </div>`;
-    stepsEl.appendChild(div);
-  });
 
-  // Algoritmo
+  if (esVRP) {
+    const colores = ['v-color-0', 'v-color-1', 'v-color-2', 'v-color-3'];
+    const dots    = ['dot-0', 'dot-1', 'dot-2', 'dot-3'];
+
+    vehiculos.forEach((vehiculo, vi) => {
+      const colorClass = colores[vi % colores.length];
+      const dotClass   = dots[vi % dots.length];
+      const ruta       = vehiculo.ruta || [];
+      const section    = document.createElement('div');
+      section.className = 'vehicle-section';
+
+      const hv = Math.floor((vehiculo.tiempo_min || 0) / 60);
+      const mv = (vehiculo.tiempo_min || 0) % 60;
+      const tiempoStr = vehiculo.tiempo_min ? (hv > 0 ? hv+'h '+mv+'m' : mv+'min') : '';
+      const distStr   = vehiculo.distancia_km ? vehiculo.distancia_km+'km' : '';
+      const metaStr   = [tiempoStr, distStr].filter(Boolean).join(' · ');
+
+      section.innerHTML =
+        '<div class="vehicle-header ' + colorClass + '">' +
+          '<div class="vehicle-dot ' + dotClass + '"></div>' +
+          'Vehículo ' + vehiculo.id + ' — ' + ruta.length + ' paradas' +
+          (metaStr ? ' · ' + metaStr : '') +
+        '</div>';
+
+      ruta.forEach((nombre, i) => {
+        const isLast = i === ruta.length - 1;
+        const stop = document.createElement('div');
+        stop.className = 'route-stop';
+        stop.innerHTML = `
+          <div class="stop-line">
+            <div class="stop-num">${i + 1}</div>
+            ${!isLast ? '<div class="stop-connector"></div>' : ''}
+          </div>
+          <div class="stop-info">
+            <div class="stop-name">${nombre}</div>
+            <div class="stop-meta">Parada ${i + 1}</div>
+          </div>`;
+        section.appendChild(stop);
+      });
+      stepsEl.appendChild(section);
+    });
+
+  } else {
+    rutaTSP.forEach((nombre, i) => {
+      const isLast = i === rutaTSP.length - 1;
+      const div = document.createElement('div');
+      div.className = 'route-stop';
+      div.innerHTML = `
+        <div class="stop-line">
+          <div class="stop-num">${i + 1}</div>
+          ${!isLast ? '<div class="stop-connector"></div>' : ''}
+        </div>
+        <div class="stop-info">
+          <div class="stop-name">${nombre}</div>
+          <div class="stop-meta">Parada ${i + 1}</div>
+        </div>`;
+      stepsEl.appendChild(div);
+    });
+  }
+
   document.getElementById('algo-badge').textContent = `⚙ ${data.algoritmo || 'TSP'}`;
 
-  // Justificación con efecto typewriter
   const llmEl = document.getElementById('llm-text');
-  llmEl.innerHTML = '';
-  const texto = data.justificacion || 'Sin justificación disponible.';
-  let i = 0;
-  const cursor = document.createElement('span');
-  cursor.className = 'llm-cursor';
-  llmEl.appendChild(cursor);
-  const iv = setInterval(() => {
-    if (i < texto.length) {
-      llmEl.insertBefore(document.createTextNode(texto[i]), cursor);
-      i++;
-    } else { clearInterval(iv); cursor.remove(); }
-  }, 16);
+llmEl.innerHTML = '';
+const texto = data.justificacion || 'Sin justificación disponible.';
+
+let i = 0;
+const cursor = document.createElement('span');
+cursor.className = 'llm-cursor';
+llmEl.appendChild(cursor);
+const iv = setInterval(() => {
+  if (i < texto.length) {
+    llmEl.insertBefore(document.createTextNode(texto[i]), cursor);
+    i++;
+  } else { clearInterval(iv); cursor.remove(); }
+}, 16);
 
   document.getElementById('results-body').scrollTop = 0;
 }
@@ -549,28 +1251,38 @@ function mostrarResultados(data) {
 // ─────────────────────────────────────────
 // HELPERS
 // ─────────────────────────────────────────
-function mostrarConfirmacion(origen, zona, tiempo, capacidad, observaciones) {
-  document.getElementById('confirm-rows').innerHTML = `
+function mostrarConfirmacion(origen, zonaLabel, horaInicio, horaFin, observaciones, incidentes) {
+  let rows = `
+    <div class="confirm-row">
+      <span class="confirm-key">Día</span>
+      <span class="confirm-value">${NOMBRES_DIA[diaSeleccionado]}</span>
+    </div>
     <div class="confirm-row">
       <span class="confirm-key">Origen</span>
-      <span class="confirm-value">${LABELS.origen[origen]}</span>
+      <span class="confirm-value">${LABELS_ORIGEN[origen] || origen}</span>
     </div>
     <div class="confirm-row">
-      <span class="confirm-key">Zona</span>
-      <span class="confirm-value">${LABELS.zona[zona]}</span>
+      <span class="confirm-key">Zonas</span>
+      <span class="confirm-value">${zonaLabel}</span>
     </div>
     <div class="confirm-row">
-      <span class="confirm-key">Tiempo</span>
-      <span class="confirm-value">${LABELS.tiempo[tiempo]}</span>
-    </div>
-    <div class="confirm-row">
-      <span class="confirm-key">Vehículo</span>
-      <span class="confirm-value">${LABELS.capacidad[capacidad]}</span>
+      <span class="confirm-key">Horario</span>
+      <span class="confirm-value">${horaInicio} – ${horaFin}</span>
     </div>
     <div class="confirm-row">
       <span class="confirm-key">Solicitud</span>
       <span class="confirm-value">${observaciones.length > 70 ? observaciones.slice(0,70)+'…' : observaciones}</span>
     </div>`;
+
+  if (incidentes) {
+    rows += `
+    <div class="confirm-row" style="border-top:1px solid rgba(232,160,32,.2); margin-top:4px; padding-top:8px;">
+      <span class="confirm-key" style="color:var(--accent2);">⚠ Incidente</span>
+      <span class="confirm-value">${incidentes.length > 60 ? incidentes.slice(0,60)+'…' : incidentes}</span>
+    </div>`;
+  }
+
+  document.getElementById('confirm-rows').innerHTML = rows;
   document.getElementById('confirm-box').classList.add('visible');
 }
 
@@ -581,8 +1293,16 @@ function mostrarErrorWebhook(msg) {
     <div class="ph-text" style="color:#C4391A;">${msg}</div>`;
 }
 
-// Evitar que el mapa se resetee por geolocalización
+// ─────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────
 window.addEventListener('load', () => {
+  const hoy = new Date().getDay();
+  const chipHoy = document.getElementById('chip-dia-' + hoy);
+  if (chipHoy) chipHoy.classList.add('hoy');
+  seleccionarDia(hoy);
+  actualizarEstadoFlota();
+
   const iframe = document.getElementById('map-iframe');
   iframe.addEventListener('load', () => {
     try {
